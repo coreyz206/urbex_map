@@ -1,8 +1,10 @@
 # Urbex Map
-## An interactive map of locations for Urban Exploration, using the Google Maps API
+### An interactive map of locations for Urban Exploration, using the Google Maps API
 
-### To-do
-  
+------
+
+### To-do list
+
 #### Priority 1  
   * Write barebones API to use GET to transfer JSON data from server to client
   * Configure server to use API
