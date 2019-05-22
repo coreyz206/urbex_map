@@ -28,4 +28,4 @@
   
 ------
 
-Discord link: [discord](https://discord.gg/PU9AdD4)
+[Discord link](https://discord.gg/PU9AdD4)
