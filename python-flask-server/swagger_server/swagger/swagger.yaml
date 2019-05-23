@@ -2,11 +2,11 @@
 swagger: "2.0"
 info:
   description: "Urban Exploration web API."
-  version: "beta 0.1"
+  version: "v0.1"
   title: "Urbex Map API"
   contact:
     email: "coreyz206@gmail.com"
-host: "sampleurl.urbex"
+host: "192.99.247.159"
 basePath: "/v2"
 tags:
 - name: "locations"
