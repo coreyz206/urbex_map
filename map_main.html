@@ -19,17 +19,78 @@
     </style>
   </head>
   <body>
+    <input type="file" id="file-input" >
+    <div id="file-content"></div>
     <div id="map"></div>
     <script>
+      function readSingleFile(e) {
+        var file = e.target.files[0];
+        if (!file) {
+          return;
+        }
+        var reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = function(e) {
+          var contents = e.target.result;
+          initMap(contents);
+        }
+      };
+
+      // Basic map initialization
       var map;
-      function initMap() {
+      function initMap(placeRaw) {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 47.5, lng: -122},
           zoom: 9
         });
+        placeData = JSON.parse(placeRaw)
+        var markers = [];
+        var infowindows = [];
+        for(i in placeData){
+          markers[i] = new google.maps.Marker({
+            position: {lat: placeData[i]["X Coord"],
+                        lng: placeData[i]["Y Coord"]},
+            map: map,
+            title: placeData[i]["Name"]
+          });
+          infowindows[i] = new google.maps.InfoWindow({
+            content: placeData[i]["Description"],
+            maxWidth: 500
+          });
+          markers[i].addListener('click', function() {
+            infowindows[i].open(map, markers[i])
+          })
+        }
       }
+
+      /*
+        WILL PROBABLY BE READING THIS WHEN IM DUMB AND STUPID
+
+        CORIN
+
+        Figure out how the fuck to get addMapMarkers into initMap.
+        Wait
+        Can I delete the callback from the google maps API call and instead
+        call initMap as the filereader.onread function?
+        Oh yeah baby I think I can
+        This is finna be GOOD
+
+        Once all this is done, Kevin should be done with the API. Then you can get rid of
+        all this BuLlShIt and just take the data in ezpz json form directly from the API call.
+
+        Hell, once the API is working I can probably just throw the get call right in initMap.
+      */
+
+      // Fuck this piece of shit function doesnt even do anything
+      function addMapMarkers(placeDataRaw) {
+        placeData = JSON.parse(placeDataRaw)
+        for(place in placeData){
+          console.log(placeData[place].Name)
+        }
+      }
+      document.getElementById('file-input').addEventListener('change', readSingleFile, false);
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvx71KQmfMXV17yo-Ewl0-QRX8kvNhNdI&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvx71KQmfMXV17yo-Ewl0-QRX8kvNhNdI"
     async defer></script>
   </body>
 </html>
