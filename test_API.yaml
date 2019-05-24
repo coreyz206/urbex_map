@@ -12,6 +12,7 @@ tags:
   description: "Get and change locations in the database"
 schemes:
 - "https"
+- "http"
 paths:
   /locations:
     post:
