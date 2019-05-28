@@ -45,7 +45,10 @@
         });
         placeData = JSON.parse(placeRaw)
         var markers = [];
-        var infowindows = [];
+        var descriptionWindows = [];
+        var descriptionContent = [];
+        var nameWindows = [];
+        var nameContent = [];
         for(i in placeData){
           markers[i] = new google.maps.Marker({
             position: {lat: placeData[i]["X Coord"],
@@ -53,38 +56,59 @@
             map: map,
             title: placeData[i]["Name"]
           });
-          infowindows[i] = new google.maps.InfoWindow({
-            content: placeData[i]["Description"],
+
+          nameContent[i] = '<div id="title"> <b>' + placeData[i]["Name"] + '</b> </div>';
+          descriptionContent[i] = '<div id="content">' + placeData[i]["Description"] + '</div>';
+
+          descriptionWindows[i] = new google.maps.InfoWindow({
+            content: descriptionContent[i],
             maxWidth: 500
           });
-          markers[i].addListener('click', function() {
-            infowindows[i].open(map, markers[i])
-          })
+
+          nameWindows[i] = new google.maps.InfoWindow({
+            content: nameContent[i],
+            maxWidth: 300
+          });
+
+          function clickListener(i) {
+            return function() {
+              nameWindows[i].close(map, markers[i]);
+              descriptionWindows[i].open(map, markers[i])
+            }
+          };
+
+          function enterListener(i) {
+            return function() {
+              nameWindows[i].open(map, markers[i])
+            }
+          };
+
+          function leaveListener(i) {
+            return function() {
+              nameWindows[i].close(map, markers[i])
+            }
+          };
+
+          markers[i].addListener('click', clickListener(i));
+          markers[i].addListener('mouseover', enterListener(i));
+          markers[i].addListener('mouseout', leaveListener(i))
         }
       }
 
-      /*
-        TODO
-
-        Right now the listener only opens the last location object.
-        I have no idea how to fix this. It did the same thing when I used global variables.
-        It's like you can only have one listener or something, weird.
-
-        Once all this is done, Kevin should be done with the API. Then you can get rid of
-        all this BuLlShIt and just take the data in ezpz json form directly from the API call.
-
-        Hell, once the API is working I can probably just throw the get call right in initMap.
-      */
-
-      // Fuck this piece of shit function doesnt even do anything
-      function addMapMarkers(placeDataRaw) {
-        placeData = JSON.parse(placeDataRaw)
-        for(place in placeData){
-          console.log(placeData[place].Name)
-        }
-      }
       document.getElementById('file-input').addEventListener('change', readSingleFile, false);
     </script>
+    <!--
+    TODO
+
+    Right now the listener only opens the last location object.
+    I have no idea how to fix this. It did the same thing when I used global variables.
+    It's like you can only have one listener or something, weird.
+
+    Once all this is done, Kevin should be done with the API. Then you can get rid of
+    all this BuLlShIt and just take the data in ezpz json form directly from the API call.
+
+    Hell, once the API is working I can probably just throw the get call right in initMap.
+    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvx71KQmfMXV17yo-Ewl0-QRX8kvNhNdI"
     async defer></script>
   </body>
