@@ -62,7 +62,7 @@
           descriptionContent[i] = '<div id="content">' + placeData[i]["Description"] + '</div>';
 
           descriptionWindows[i] = new google.maps.InfoWindow({
-            content: descriptionContent[i],
+            content: nameContent[i] + descriptionContent[i],
             maxWidth: 500
           });
 
