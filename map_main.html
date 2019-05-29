@@ -22,8 +22,11 @@
   <body>
     <input type="file" id="file-input" >
     <div id="file-content"></div>
-    <div id="map"></div>
+    <div id="map">
+      <img src="./img/key.png" alt="key" style="position:absolute;left:0px;bottom:0px;z-index:99"> 
+    </div>
     <script>
+      // Only used to get json file into initMap- will be obsoleted when API works
       function readSingleFile(e) {
         var file = e.target.files[0];
         if (!file) {
@@ -37,25 +40,37 @@
         }
       };
 
-      // Basic map initialization
+      // 
       var map;
       function initMap(placeRaw) {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 47.5, lng: -122},
           zoom: 9
         });
+        
+        //
         placeData = JSON.parse(placeRaw)
         var markers = [];
         var descriptionWindows = [];
         var descriptionContent = [];
         var nameWindows = [];
         var nameContent = [];
+        var iconColor = "";
         for(i in placeData){
+          if(placeData[i]["Category"] == "good places"){
+            iconColor = './img/green_marker.png';
+          } else if(placeData[i]["Category"] == "questionable places"){
+            iconColor = './img/yellow_marker.png';
+          } else {
+            iconColor = './img/red_marker.png';
+          };
+          
           markers[i] = new google.maps.Marker({
             position: {lat: placeData[i]["X Coord"],
                         lng: placeData[i]["Y Coord"]},
             map: map,
-            title: placeData[i]["Name"]
+            title: placeData[i]["Name"],
+            icon: iconColor
           });
 
           nameContent[i] = '<div id="title"> <b>' + placeData[i]["Name"] + '</b> </div>';
@@ -101,14 +116,10 @@
     <!--
     TODO
 
-    Right now the listener only opens the last location object.
-    I have no idea how to fix this. It did the same thing when I used global variables.
-    It's like you can only have one listener or something, weird.
+    - Add panel for location submitting
+    - Add key image in corner of map
+    - Comment code
 
-    Once all this is done, Kevin should be done with the API. Then you can get rid of
-    all this BuLlShIt and just take the data in ezpz json form directly from the API call.
-
-    Hell, once the API is working I can probably just throw the get call right in initMap.
     -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvx71KQmfMXV17yo-Ewl0-QRX8kvNhNdI"
     async defer></script>
