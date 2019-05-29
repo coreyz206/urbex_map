@@ -18,7 +18,8 @@
   * Get a domain name
   * Make a panel in html/js for user inputted locations
   * Configure API with a PUSH to transfer user locations to server
-  * Figure out how to append master json file with user data and implement it
+  * Tiered permissions based on user access level
+      *This requires better security implementation, possibly OAuth2 with https
 
 #### Priority 3
   * Configure a PUT in the API for authorized users to edit existing location objects
