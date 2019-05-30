@@ -72,7 +72,6 @@
             content: nameContent[i] + descriptionContent[i],
             maxWidth: 500
           });
-
           nameWindows[i] = new google.maps.InfoWindow({
             content: nameContent[i],
             maxWidth: 300
@@ -84,13 +83,11 @@
               descriptionWindows[i].open(map, markers[i])
             }
           };
-
           function enterListener(i) {
             return function() {
               nameWindows[i].open(map, markers[i])
             }
           };
-
           function leaveListener(i) {
             return function() {
               nameWindows[i].close(map, markers[i])
@@ -103,6 +100,7 @@
         }
       }
       
+      document.getElementById('location-panel')
       document.getElementById('file-input').addEventListener('change', readSingleFile, false);
     </script>
     <!--
