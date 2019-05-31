@@ -15,8 +15,25 @@
 
     <!--Gotta figure out how to deploy multiple sizes of key image-->
     <img src="./img/key_small.png" alt="key" class="key">
-    <div id="location-panel" class="panel-button"></div>
-    
+    <button id="location-panel-button" class="loc-panel-button">
+      Add a Location
+      <div id="location-panel-content" class="loc-panel-content">
+          <p>
+            <b>This is content</b>
+          </p>
+        </div>
+    </button>
+    <script>  
+        document.getElementById("location-panel-button").addEventListener("click", function() {
+          document.getElementById("location-panel-content").classList.toggle("active");
+          var content = document.getElementById("location-panel-content");
+          if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+        });
+    </script>
     <script>
       // DEPRECATED, BACKUP IN CASE API FAILS
 
