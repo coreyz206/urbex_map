@@ -8,9 +8,9 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <!--Gotta delete the input and div after API works-->
-    <input type="file" id="file-input" >
-    <div id="file-content"></div>
+    <!--DEPRECATED, BACKUP IN CASE API FAILS-->
+    <!-- <input type="file" id="file-input" >
+    <div id="file-content"></div> -->
     <div id="map"></div>
 
     <!--Gotta figure out how to deploy multiple sizes of key image-->
@@ -18,20 +18,36 @@
     <div id="location-panel" class="panel-button"></div>
     
     <script>
-      // Function only used to get json file into initMap- will be obsoleted when API works
-      function readSingleFile(e) {
-        var file = e.target.files[0];
-        if (!file) {
-          return;
-        }
-        var reader = new FileReader();
-        reader.readAsText(file);
-        reader.onload = function(e) {
-          var contents = e.target.result;
-          initMap(contents);
-        }
-      };
+      // DEPRECATED, BACKUP IN CASE API FAILS
 
+      // function readSingleFile(e) {
+      //   var file = e.target.files[0];
+      //   if (!file) {
+      //     return;
+      //   }
+      //   var reader = new FileReader();
+      //   reader.readAsText(file);
+      //   reader.onload = function(e) {
+      //     var contents = e.target.result;
+      //     initMap(contents);
+      //   }
+      // };
+      
+      // Sends http request to our API to get JSON file, on success it initiates map w data
+      function apiCall() {
+        const Http = new XMLHttpRequest();
+        // URL Subject to change when API is remote accessible
+        const url = 'http://localhost:3000/api/locations';
+        Http.open('GET', url)
+        Http.send()
+
+        Http.onreadystatechange = function(){
+          if(this.readyState==4 && this.status==200){
+            initMap(Http.responseText)
+          }
+        }
+      }
+      
       // Function to initiate map and add markers. I should split markers into other function
       var map;
       function initMap(placeRaw) {
@@ -40,8 +56,7 @@
           zoom: 9
         });
         
-        //
-        placeData = JSON.parse(placeRaw)
+        placeData = JSON.parse(placeRaw);
         var markers = [];
         var descriptionWindows = [];
         var descriptionContent = [];
@@ -100,7 +115,6 @@
         }
       }
       
-      document.getElementById('location-panel').addEventListener('mouse')
       document.getElementById('file-input').addEventListener('change', readSingleFile, false);
     </script>
     <!--
@@ -110,7 +124,7 @@
     - Comment code
 
     -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvx71KQmfMXV17yo-Ewl0-QRX8kvNhNdI"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvx71KQmfMXV17yo-Ewl0-QRX8kvNhNdI&callback=apiCall"
     async defer></script>
   </body>
 </html>
