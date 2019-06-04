@@ -24,6 +24,7 @@
   * Get a domain name
 
 #### Priority 3
+  * Restructure git repo for ease of access & updates
   * Configure a PUT in the API for authorized users to edit existing location objects
   * Configure a DELETE in the API for authorized users to delete existing location objects
   * Spice up this readme
