@@ -1,13 +1,17 @@
+/* Import font */
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed&display=swap');
+
 /* Map height set explicity to make sure the div is the right size. */
 #map {
-        height: 100%;
+    height: 100%;
 }
 
 /* Makes map fill window */
 html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* Set the map legend in the corner */
@@ -32,14 +36,17 @@ html, body {
 	box-shadow: 1px 1px 1px 1px #C9C9C9;
 	-webkit-box-shadow: 2px 2px 1px 1px #C9C9C9;
 	-moz-box-shadow: 2px 2px 1px 1px #C9C9C9;
-	margin: 10px;
-	padding: 10px;
+	padding: .2em;
 	border-radius: 3px;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: .9em;
+	color: #575757;
 }
 
 /* Change button color when mouse is over */
 .active, .loc-panel-button:hover {
   background-color: #ececec;
+  color: #000000;
 }
 
 /* Remove blue outline from button focus */
@@ -53,12 +60,14 @@ html, body {
 	top: 30px;
 	left: 0px;
 	width: 180px;
-	height: 280px;
+	height: 300px;
 	display: none;
 	overflow: hidden;
 	background-color: #ffffff;
 	box-shadow: 1px 1px 1px 1px #C9C9C9;
 	-webkit-box-shadow: 2px 2px 1px 1px #C9C9C9;
 	-moz-box-shadow: 2px 2px 1px 1px #C9C9C9;
+	font-family: 'Roboto', sans-serif;
+	font-size: .8em;
 }
 

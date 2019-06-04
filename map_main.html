@@ -4,6 +4,7 @@
     <title>Urbex Map</title>
     <link rel="icon" href="./img/urbex_favicon.ico">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
   </head>
@@ -16,32 +17,33 @@
     <!--Gotta figure out how to deploy multiple sizes of key image-->
     <img src="./img/key_small.png" alt="key" class="key">
     <button id="location-panel-button" class="loc-panel-button">
-      Add a Location
-      <div id="location-panel-content" class="loc-panel-content" onclick="cancelEvent(event)">
-          <form id="loc-panel-form">
-              Name:<br>
-              <input type="text" name="name"><br>
+        <b>Add a Location</b>
+        <div id="location-panel-content" class="loc-panel-content" onclick="cancelEvent(event)">
+            <form id="loc-panel-form">
+                <br>Location name:<br>
+                <input type="text" name="name"><br>
 
-              <br>Category:<br>
-              <select name="category">
-                  <option value="good places">Good</option>
-                  <option value="questionable places">Questionable</option>
-                  <option value="bad places">Bad/Demolished</option>
-              </select><br>
+                <br>Category:<br>
+                <select name="category">
+                    <option value="good places">Good</option>
+                    <option value="questionable places">Questionable</option>
+                    <option value="bad places">Bad/Demolished</option>
+                </select><br>
 
-              <br>Description:<br>
-              <textarea type="text" name="description" rows="4" cols="20"></textarea><br>
+                <br>Description:<br>
+                <textarea type="text" name="description" rows="4" cols="20"></textarea><br>
 
-              <br>X Coordinate<br>
-              <input type="text" name="x"><br>
-              Y Coordinate<br>
-              <input type="text" name="y"><br><br>
-              <input type="button" value="Submit" onclick="sendData()">
-            </form>
+                <br>X Coordinate<br>
+                <input type="text" name="x"><br>
+                Y Coordinate<br>
+                <input type="text" name="y"><br><br>
+                <input type="button" value="Submit" onclick="sendData()">
+              </form>
         </div>
     </button>
     <script>  
         document.getElementById("location-panel-button").addEventListener("click", function() {
+          this.blur();
           document.getElementById("location-panel-content").classList.toggle("active");
           var content = document.getElementById("location-panel-content");
           if (content.style.display === "block") {
