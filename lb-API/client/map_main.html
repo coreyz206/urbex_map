@@ -17,27 +17,10 @@
     <img src="./img/key_small.png" alt="key" class="key">
     <button id="location-panel-button" class="loc-panel-button">
       Add a Location
-      <div id="location-panel-content" class="loc-panel-content" onclick="cancelEvent(event)">
-          <form id="loc-panel-form">
-              Name:<br>
-              <input type="text" name="name"><br>
-
-              <br>Category:<br>
-              <select name="category">
-                  <option value="good places">Good</option>
-                  <option value="questionable places">Questionable</option>
-                  <option value="bad places">Bad/Demolished</option>
-              </select><br>
-
-              <br>Description:<br>
-              <textarea type="text" name="description" rows="4" cols="20"></textarea><br>
-
-              <br>X Coordinate<br>
-              <input type="text" name="x"><br>
-              Y Coordinate<br>
-              <input type="text" name="y"><br><br>
-              <input type="button" value="Submit" onclick="sendData()">
-            </form>
+      <div id="location-panel-content" class="loc-panel-content">
+          <p>
+            <b>This is content</b>
+          </p>
         </div>
     </button>
     <script>  
@@ -50,34 +33,6 @@
             content.style.display = "block";
           }
         });
-
-        function cancelEvent(event) {
-          event.stopPropagation();
-        }
-
-        function sendData() {
-          var locationSubmit = Object();
-          locationSubmit["Name"] = document.getElementById("loc-panel-form").name.value;
-          locationSubmit["Category"] = document.getElementById("loc-panel-form").category.value;
-          locationSubmit["Description"] = document.getElementById("loc-panel-form").description.value;
-          locationSubmit["X Coord"] = document.getElementById("loc-panel-form").x.value;
-          locationSubmit["Y Coord"] = document.getElementById("loc-panel-form").y.value;
-
-          console.log("Attempting to POST...");
-          locationSubmit = JSON.stringify(locationSubmit);
-          
-          var Http = new XMLHttpRequest();
-          var url = 'http://localhost:3000/api/';
-          Http.open('POST', url + "locations");
-          Http.setRequestHeader('Content-Type', 'application/json');
-          Http.send(locationSubmit);
-          Http.onreadystatechange = function(){
-          if(this.readyState==4 && this.status==200){
-            console.log("Successfully POSTed new location")
-            apiCall();
-          }
-        }
-        }
     </script>
     <script>
       // DEPRECATED, BACKUP IN CASE API FAILS
@@ -97,16 +52,14 @@
       
       // Sends http request to our API to get JSON file, on success it initiates map w data
       function apiCall() {
-        console.log("Requesting locations...")
-        var Http = new XMLHttpRequest();
+        const Http = new XMLHttpRequest();
         // URL Subject to change when API is remote accessible
-        var url = 'http://localhost:3000/api/';
-        Http.open('GET', url + "locations")
+        const url = 'http://localhost:3000/api/locations';
+        Http.open('GET', url)
         Http.send()
 
         Http.onreadystatechange = function(){
           if(this.readyState==4 && this.status==200){
-            console.log("Successfully retrieved locations")
             initMap(Http.responseText)
           }
         }
@@ -178,8 +131,8 @@
           markers[i].addListener('mouseout', leaveListener(i))
         }
       }
-
-      // document.getElementById("file-input").addEventListener("change", readSingleFile)
+      
+      document.getElementById('file-input').addEventListener('change', readSingleFile, false);
     </script>
     <!--
     TODO
