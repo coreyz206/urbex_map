@@ -16,8 +16,7 @@
   * ~Make a panel in html/js for user inputted locations~
   * ~Configure API with a POST to transfer user locations to server~
   * Create working search bar
-  * Re-create key so it works better
-  * Create navbar template for future use
+  * Re-create key so it ~works~ looks better (lol)
   * Get the loopback service working so API can stay up for more than 20min
   * Move database to mySQL server
   * Add location search with API queries
@@ -33,6 +32,11 @@
   * Spice up this readme
   * Publicize discord, maybe make map accessible to non-members (need to discuss)
   * Tiered permissions based on user access level
+
+#### Priority 4 (long term)
+  * Expand website to include forums, etc.
+  * Create IOS/Android client to view map/other
+  * Get money
   
 ------
 
