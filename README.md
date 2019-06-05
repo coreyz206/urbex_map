@@ -16,6 +16,7 @@
   * ~Make a panel in html/js for user inputted locations~
   * ~Configure API with a POST to transfer user locations to server~
   * Create working search bar
+  * Rewrite js with jQuery cause jQuery is fucking lit
   * Re-create key so it ~works~ looks better (lol)
   * Get the loopback service working so API can stay up for more than 20min
   * Move database to mySQL server
