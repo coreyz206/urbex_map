@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Urbex Map</title>
+    <script src="resources/jquery.js"></script>
     <link rel="icon" href="./img/urbex_favicon.ico">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
@@ -13,11 +14,10 @@
     <!-- <input type="file" id="file-input" >
     <div id="file-content"></div> -->
     <div id="map"></div>
-
     <!--Gotta figure out how to deploy multiple sizes of key image-->
     <img src="./img/key_small.png" alt="key" class="key">
     <button id="location-panel-button" class="loc-panel-button">
-        <b>Add a Location</b>
+        Add a location
         <div id="location-panel-content" class="loc-panel-content" onclick="cancelEvent(event)">
             <form id="loc-panel-form">
                 <br>Location name:<br>
@@ -41,6 +41,28 @@
               </form>
         </div>
     </button>
+    <div id="search-container">
+        <form id="search">
+            <input name="search-bar" type="text" placeholder="Search locations" class="search-bar-box">
+        </form>
+    </div>
+    <!-- Script pertaining to the search bar, I had to learn some jQuery here -->
+    <script>
+    $(document).ready(function () {
+      // Listen to submit event on <form> without html
+      $('#search').submit(function (e) {
+
+        // Prevent form submission which refreshes page, the important part
+        e.preventDefault();
+
+        // Roundabout way of isolating string value from the raw form data
+        var formData = $(this).serializeArray()[0].value;
+
+        console.log(formData);
+      });
+    });
+    </script>
+    <!-- Scripts pertaining to the add location button and associated dropdown menu -->
     <script>  
         document.getElementById("location-panel-button").addEventListener("click", function() {
           this.blur();
@@ -182,13 +204,6 @@
 
       // document.getElementById("file-input").addEventListener("change", readSingleFile)
     </script>
-    <!--
-    TODO
-
-    - Add panel for location submitting
-    - Comment code
-
-    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvx71KQmfMXV17yo-Ewl0-QRX8kvNhNdI&callback=apiCall"
     async defer></script>
   </body>
