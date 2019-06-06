@@ -55,7 +55,7 @@
         // Prevent form submission which refreshes page, the important part
         e.preventDefault();
 
-        // Roundabout way of isolating string value from the raw form data
+        // Roundabout way of isolating string value from the raw form
         var formData = $(this).serializeArray()[0].value;
 
         console.log(formData);
