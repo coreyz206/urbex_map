@@ -50,7 +50,7 @@
     <script>
     $(document).ready(function () {
       // Listen to submit event on <form> without html
-      $('#search').submit(function (e) {
+      $('#search').submit(function(e) {
 
         // Prevent form submission which refreshes page, the important part
         e.preventDefault();
@@ -64,14 +64,26 @@
     </script>
     <!-- Scripts pertaining to the add location button and associated dropdown menu -->
     <script>  
-        document.getElementById("location-panel-button").addEventListener("click", function() {
+        var spacePressed = false;
+
+        document.getElementById("location-panel-button").addEventListener("click", function(e) {
+          // Make sure this runs after space check
+          setTimeout(50);
+          // Remove focus from expand button
           this.blur();
           document.getElementById("location-panel-content").classList.toggle("active");
           var content = document.getElementById("location-panel-content");
-          if (content.style.display === "block") {
+          if (content.style.display === "block" && spacePressed == false) {
             content.style.display = "none";
           } else {
             content.style.display = "block";
+            spacePressed = false;
+          }
+        });
+
+        document.getElementById("location-panel-button").addEventListener("keypress", function(e) {
+          if(e.keyCode == 32) {
+            spacePressed = true;
           }
         });
 
