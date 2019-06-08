@@ -188,24 +188,24 @@
         var nameContent = [];
         var iconColor = "";
         for(i in placeData){
-          if(placeData[i]["Category"] == "good places"){
+          if(placeData[i]["category"] == "good places"){
             iconColor = './img/green_marker.png';
-          } else if(placeData[i]["Category"] == "questionable places"){
+          } else if(placeData[i]["category"] == "questionable places"){
             iconColor = './img/yellow_marker.png';
           } else {
             iconColor = './img/red_marker.png';
           };
           
           markers[i] = new google.maps.Marker({
-            position: {lat: placeData[i]["X Coord"],
-                        lng: placeData[i]["Y Coord"]},
+            position: {lat: placeData[i]["x"],
+                        lng: placeData[i]["y"]},
             map: map,
-            title: placeData[i]["Name"],
+            title: placeData[i]["name"],
             icon: iconColor
           });
 
-          nameContent[i] = '<div id="title"> <b>' + placeData[i]["Name"] + '</b> </div>';
-          descriptionContent[i] = '<div id="content">' + placeData[i]["Description"] + '</div>';
+          nameContent[i] = '<div id="title"> <b>' + placeData[i]["name"] + '</b> </div>';
+          descriptionContent[i] = '<div id="content">' + placeData[i]["description"] + '</div>';
 
           descriptionWindows[i] = new google.maps.InfoWindow({
             content: nameContent[i] + descriptionContent[i],
