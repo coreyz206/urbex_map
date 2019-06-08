@@ -14,18 +14,56 @@ html, body {
     font-family: 'Roboto', sans-serif;
 }
 
-/* Set the map legend in the corner */
-.key {
+/* Button to expand key */
+.key-panel-button {
 	position: fixed;
-	left: 0%;
-	bottom:0%;
-	z-index:1;
+	left: 3%;
+	bottom: 3%;
+	z-index: 1;
+	background: #ffffff;
+	min-height: 30px;
+	height: 30px;
+	min-width: 180px;
+	width: 180px;
+	box-shadow: 1px 1px 1px 1px #C9C9C9;
+	-webkit-box-shadow: 2px 2px 1px 1px #C9C9C9;
+	-moz-box-shadow: 2px 2px 1px 1px #C9C9C9;
+	padding: .2em;
+	border-radius: 3px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+	color: #7B7B7B;
+}
+
+/* Key panel styling */
+.key-panel-content {
+	position: absolute;
+	bottom: 30px;
+	left: 0px;
+	width: 220px;
+	height: 90px;
+	display: none;
+	overflow: hidden;
+	background-color: 000000;
+	border-radius: 5px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: .85em;
+	text-align: left;
+	padding-left: 7px;
+	padding-top: 7px;
+}
+
+/* Just to scale markers */
+.key-marker {
+	width: 1em;
+	height: auto;
+	float: center;
 }
 
 /* Location panel button */
 .loc-panel-button {
 	position: fixed;
-	right: .3%;
+	right: 1%;
 	top: 9%;
 	z-index:1;
 	background: #ffffff;
@@ -39,18 +77,18 @@ html, body {
 	padding: .2em;
 	border-radius: 3px;
 	font-family: 'Open Sans', sans-serif;
-	font-size: .9em;
-	color: #575757;
+	font-size: 1em;
+	color: #7B7B7B;
 }
 
 /* Change button color when mouse is over */
-.active, .loc-panel-button:hover {
+.active, .loc-panel-button:hover, .key-panel-button:hover {
   background-color: #ececec;
-  color: #000000;
+  color: #404040;
 }
 
 /* Remove blue outline from button focus */
-.loc-panel-button:focus, .search-bar-box {
+.loc-panel-button:focus, .search-bar-box, .key-panel-button {
 	outline-width: 0;
 }
 
@@ -68,7 +106,7 @@ html, body {
 	-webkit-box-shadow: 2px 2px 1px 1px #C9C9C9;
 	-moz-box-shadow: 2px 2px 1px 1px #C9C9C9;
 	font-family: 'Open Sans', sans-serif;
-	font-size: .8em;
+	font-size: .75em;
 }
 
 /* Search Bar */

@@ -15,7 +15,6 @@
     <div id="file-content"></div> -->
     <div id="map"></div>
     <!--Gotta figure out how to deploy multiple sizes of key image-->
-    <img src="./img/key_small.png" alt="key" class="key">
     <button id="location-panel-button" class="loc-panel-button">
         Add a location
         <div id="location-panel-content" class="loc-panel-content" onclick="cancelEvent(event)">
@@ -46,18 +45,27 @@
             <input name="search-bar" type="text" placeholder="Search locations" class="search-bar-box">
         </form>
     </div>
+    <button id="key-panel-button" class="key-panel-button">
+        Show/hide key
+        <div id="key-panel-content" class="key-panel-content" onclick="cancelEvent(event)">
+            <img src="./img/green_marker.png" alt="good marker" class="key-marker">
+            - Good locations<br>
+            <img src="./img/yellow_marker.png" alt="okay marker" class="key-marker">
+            - Questionable/okay locations<br>
+            <img src="./img/red_marker.png" alt="bad marker" class="key-marker">
+            - Demolished/bad locations
+        </div>
+    </button>
+
     <!-- Script pertaining to the search bar, I had to learn some jQuery here -->
     <script>
     $(document).ready(function () {
       // Listen to submit event on <form> without html
       $('#search').submit(function(e) {
-
         // Prevent form submission which refreshes page, the important part
         e.preventDefault();
-
         // Roundabout way of isolating string value from the raw form
         var formData = $(this).serializeArray()[0].value;
-
         console.log(formData);
       });
     });
@@ -66,6 +74,7 @@
     <script>  
         var spacePressed = false;
 
+        // Expands location panel
         document.getElementById("location-panel-button").addEventListener("click", function(e) {
           // Make sure this runs after space check
           setTimeout(50);
@@ -81,16 +90,32 @@
           }
         });
 
+        // Expands key panel
+        document.getElementById("key-panel-button").addEventListener("click", function(e) {
+          // Remove focus from expand button
+          this.blur();
+          document.getElementById("key-panel-content").classList.toggle("active");
+          var content = document.getElementById("key-panel-content");
+          if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+        });
+
+        // Disable spacebar minimization while in text box
         document.getElementById("location-panel-button").addEventListener("keypress", function(e) {
           if(e.keyCode == 32) {
             spacePressed = true;
           }
         });
 
+        // Yo I forgot but it's important
         function cancelEvent(event) {
           event.stopPropagation();
         }
 
+        // POSTs new locations to the database
         function sendData() {
           var locationSubmit = Object();
           locationSubmit["Name"] = document.getElementById("loc-panel-form").name.value;
@@ -99,7 +124,7 @@
           locationSubmit["X Coord"] = document.getElementById("loc-panel-form").x.value;
           locationSubmit["Y Coord"] = document.getElementById("loc-panel-form").y.value;
 
-          console.log("Attempting to POST...");
+          console.log("Sending request...");
           locationSubmit = JSON.stringify(locationSubmit);
           
           var Http = new XMLHttpRequest();
@@ -109,7 +134,7 @@
           Http.send(locationSubmit);
           Http.onreadystatechange = function(){
           if(this.readyState==4 && this.status==200){
-            console.log("Successfully POSTed new location")
+            console.log("Successfully added new location")
             apiCall();
           }
         }
