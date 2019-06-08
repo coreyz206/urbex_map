@@ -2,5 +2,15 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "locationDS": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "",
+    "database": "urbex",
+    "password": "Pnwurbex1",
+    "name": "locationDS",
+    "user": "Urbexuser",
+    "connector": "mysql"
   }
 }
