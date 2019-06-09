@@ -3,11 +3,13 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
-// 'use strict';
+'use strict';
 
-// module.exports = function(server) {
-//   // Install a `/` route that returns server status
-//   var router = server.loopback.Router();
-//   router.get('/', server.loopback.status());
-//   server.use(router);
-// };
+module.exports = function(server) {
+  // Install a `/` route that redirects to map
+  var router = server.loopback.Router();
+  router.get('/', function(req, res) {
+    res.redirect('./map_main.html')
+  });
+  server.use(router);
+};
