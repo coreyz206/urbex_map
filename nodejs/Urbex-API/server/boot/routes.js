@@ -9,7 +9,7 @@ module.exports = function(server) {
   // Install a `/` route that redirects to map
   var router = server.loopback.Router();
   router.get('/', function(req, res) {
-    res.sendFile('map_main.html', root = '~/urbex-git/urbex_map/nodejs/Urbex-API/client/')
+    res.sendFile('map_main.html', root = '/root/urbex-git/urbex_map/nodejs/Urbex-API/client/')
   });
   server.use(router);
 };
