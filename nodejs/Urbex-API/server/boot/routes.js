@@ -9,7 +9,7 @@ module.exports = function(server) {
   // Install a `/` route that redirects to map
   var router = server.loopback.Router();
   router.get('/', function(req, res) {
-    res.redirect('./map_main.html')
+    res.send('map_main.html')
   });
   server.use(router);
 };
