@@ -5,6 +5,8 @@
 
 'use strict';
 
+var path = require('path');
+
 module.exports = function(server) {
   // Install a `/` route that redirects to map
   var router = server.loopback.Router();
