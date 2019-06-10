@@ -128,7 +128,7 @@
           locationSubmit = JSON.stringify(locationSubmit);
           
           var Http = new XMLHttpRequest();
-          var url = 'http://192.99.247.159/api/';
+          var url = 'https://192.99.247.159/api/';
           Http.open('POST', url + "locations");
           Http.setRequestHeader('Content-Type', 'application/json');
           Http.send(locationSubmit);
@@ -160,7 +160,7 @@
       function apiCall() {
         console.log("Requesting locations...")
         var Http = new XMLHttpRequest();
-        var url = 'http://192.99.247.159/api/';
+        var url = 'https://192.99.247.159/api/';
         Http.open('GET', url + "locations")
         Http.send()
 
