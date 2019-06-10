@@ -15,16 +15,16 @@
 #### Priority 2
   * ~Make a panel in html/js for user inputted locations~
   * ~Configure API with a POST to transfer user locations to server~
-  * Create working search bar
+  * ~Re-create key so it works looks better (lol)~
+  * ~Get the loopback service working so API can stay up for more than 20min~
+  * ~Move database to mySQL server~
+  * ~Setup https~
+  * ~Get a domain name~
+  * Get 301 redirect working for https
+  * Create working search bar with mySQL queries/filters/something
   * Rewrite js with jQuery cause jQuery is fucking lit
-  * Re-create key so it ~works~ looks better (lol)
-  * Get the loopback service working so API can stay up for more than 20min
-  * Move database to mySQL server
-  * Add location search with API queries
-  * Setup https
   * Enable OAuth2 for security
   * Create some barebones user login system that works with OAuth2
-  * Get a domain name
 
 #### Priority 3
   * Restructure git repo for ease of access & updates
