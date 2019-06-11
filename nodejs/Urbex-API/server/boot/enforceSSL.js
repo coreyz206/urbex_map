@@ -4,9 +4,3 @@ exports.forceSsl = function(req, res, next) {
     }
     return next();
  };
-
- app.configure(function() {
-
-        app.use(forceSsl);
-
- });
