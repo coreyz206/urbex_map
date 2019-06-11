@@ -9,7 +9,7 @@ var boot = require('loopback-boot');
 var http = require('http');
 var https = require('https');
 var sslConfig = require('./ssl-config');
-var enforceSSL = require('./enforceSSL')
+var enforceSSL = require('./boot/enforceSSL')
 
 var app = module.exports = loopback();
 
