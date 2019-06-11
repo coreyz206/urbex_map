@@ -9,7 +9,7 @@ var boot = require('loopback-boot');
 var http = require('http');
 var https = require('https');
 var sslConfig = require('./ssl-config');
-var enforceSSL = require('/enforceSSL')
+var enforceSSL = require('./enforceSSL')
 
 var app = module.exports = loopback();
 
@@ -30,7 +30,7 @@ app.start = function(httpOnly) {
   } else {
     server = http.createServer(app);
   }
-  server.use(forceSsl);
+  server.use(enforceSSL.forceSsl);
   server.listen(app.get('port'), function() {
     var baseUrl = (httpOnly ? 'http://' : 'https://') + app.get('host') + ':' + app.get('port');
     app.emit('started', baseUrl);
