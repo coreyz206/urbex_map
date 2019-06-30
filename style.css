@@ -46,6 +46,7 @@ html, body {
 	overflow: hidden;
 	background-color: 000000;
 	border-radius: 5px;
+	border-color: white;
 	font-family: 'Open Sans', sans-serif;
 	font-size: .85em;
 	text-align: left;
