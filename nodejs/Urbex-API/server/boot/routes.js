@@ -7,7 +7,7 @@ var app = loopback();
 module.exports = function() {
   // Install a `/` route that redirects to map
   app.configure(function() {
-    app.use('/', function(req, res) {
+    app.get('/', function(req, res) {
       res.sendFile(path.join(__dirname + '/../../client/map_main.html'));
     });
   });
