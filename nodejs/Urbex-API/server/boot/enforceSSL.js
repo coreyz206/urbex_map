@@ -1,16 +1,16 @@
-'use strict';
+"use strict";
 
-var path = require('path');
+var path = require("path");
 
 module.exports = function(server) {
-  var forceSsl = function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-      return res.redirect(['https://', req.get('Host'), req.url].join(''));
+  var forceSsl = function(req, res, next) {
+    if (req.headers["x-forwarded-proto"] !== "https") {
+      return res.redirect(["https://", req.get("Host"), req.url].join(""));
     }
     return next();
   };
 
-	app.configure(function() {
-     app.use(forceSsl)
-	}
+  server.configure(function() {
+    server.use(forceSsl);
+  });
 };
