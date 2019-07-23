@@ -1,6 +1,7 @@
 'use strict';
 
 var path = require('path');
+var loopback = require('loopback');
 var app = loopback();
 
 module.exports = function setRoutes(server) {
