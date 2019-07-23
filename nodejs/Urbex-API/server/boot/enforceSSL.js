@@ -2,7 +2,7 @@
 
 var path = require("path");
 
-module.exports = function forceSSL(server) {
+module.exports = function() {
   var forceSsl = function(req, res, next) {
     if (req.headers["x-forwarded-proto"] !== "https") {
       return res.redirect(["https://", req.get("Host"), req.url].join(""));
