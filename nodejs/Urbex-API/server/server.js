@@ -23,7 +23,7 @@ app.start = function() {
     };
   server = https.createServer(options, app);
   server.listen(app.get('port'), function() {
-    var baseUrl = ('https://' + app.get('host') + ':' + app.get('port');
+    var baseUrl = 'https://' + app.get('host') + ':' + app.get('port');
     app.emit('started', baseUrl);
     console.log('LoopBack server listening @ %s%s', baseUrl, '/');
     if (app.get('loopback-component-explorer')) {
