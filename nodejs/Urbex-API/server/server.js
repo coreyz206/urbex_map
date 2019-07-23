@@ -15,6 +15,10 @@ var app = module.exports = loopback();
 // boot scripts mount components like REST API
 boot(app, __dirname);
 
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname + '/../client/map_main.html'));
+});
+
 app.start = function() {
   var server = null;
   var options = {
