@@ -2,6 +2,7 @@
 
 var path = require('path');
 var loopback = require('loopback');
+var app = loopback();
 
 module.exports = function() {
   var forceSsl = function(req, res, next) {
