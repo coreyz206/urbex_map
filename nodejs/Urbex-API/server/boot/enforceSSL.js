@@ -1,6 +1,7 @@
 "use strict";
 
-var path = require("path");
+var path = require('path');
+var loopback = require('loopback');
 
 module.exports = function() {
   var forceSsl = function(req, res, next) {
@@ -10,7 +11,7 @@ module.exports = function() {
     return next();
   };
 
-  server.configure(function() {
-    server.use(forceSsl);
+  app.configure(function() {
+    app.use(forceSsl);
   });
 };
