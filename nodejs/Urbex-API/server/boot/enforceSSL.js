@@ -6,7 +6,10 @@ var app = loopback();
 
 module.exports = function() {
   var forceSsl = function(req, res, next) {
-    if (req.headers["forwarded-proto"] !== "https") {
+    if(req.headers["forwarded-proto"] !== "https") {
+      return res.redirect(["https://", req.get("Host"), req.url].join(""));
+    }
+    else if(req.headers["forwarded-proto"] == "http") {
       return res.redirect(["https://", req.get("Host"), req.url].join(""));
     }
     return next();
