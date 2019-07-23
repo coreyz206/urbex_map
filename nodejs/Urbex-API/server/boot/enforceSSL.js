@@ -11,6 +11,6 @@ module.exports = function(server) {
   };
 
 	app.configure(function() {
-     app.use(forceSsl);
+     app.use(forceSsl)
 	}
 };
