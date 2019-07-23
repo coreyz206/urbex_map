@@ -15,20 +15,13 @@ var app = module.exports = loopback();
 // boot scripts mount components like REST API
 boot(app, __dirname);
 
-app.start = function(httpOnly) {
-  if (httpOnly === undefined) {
-    httpOnly = process.env.HTTP;
-  }
+app.start = function() {
   var server = null;
-  if (!httpOnly) {
-    var options = {
+  var options = {
       key: sslConfig.privateKey,
       cert: sslConfig.certificate,
     };
-    server = https.createServer(options, app);
-  } else {
-    server = http.createServer(app);
-  }
+  server = https.createServer(options, app);
   server.listen(app.get('port'), function() {
     var baseUrl = (httpOnly ? 'http://' : 'https://') + app.get('host') + ':' + app.get('port');
     app.emit('started', baseUrl);
