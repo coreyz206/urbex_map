@@ -14,5 +14,8 @@ module.exports = function() {
 
   app.configure(function() {
     app.use(forceSsl);
+    app.get('/', function(req, res) {
+      res.sendFile(path.join(__dirname + '/../../client/map_main.html'));
+    });
   });
 };
