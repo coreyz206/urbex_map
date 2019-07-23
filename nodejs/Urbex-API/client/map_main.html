@@ -171,31 +171,31 @@
       
       // Sends http request to our API to get JSON file, on success it initiates map w data
       function apiCall() {
-        console.log("Requesting locations...")
+        console.log("Requesting locations...");
         var Http = new XMLHttpRequest();
         var url = 'https://urbexmap.us/api/';
-        Http.open('GET', url + "locations")
-        Http.send()
+        Http.open('GET', url + "locations");
+        Http.send();
 
         Http.onreadystatechange = function(){
           if(this.readyState==4 && this.status==200){
-            console.log("Successfully retrieved locations")
-            initMap(Http.responseText)
+            console.log("Successfully retrieved locations");
+            placeData = JSON.parse(Http.responseText);
+            initMap(placeData);
           } else if(this.readyState==4 && this.status!=200){
-            alert("Failed to retrieve locations")
+            alert("Failed to retrieve locations");
           }
         }
       }
       
       // Function to initiate map and add markers. I should split markers into other function
       var map;
-      function initMap(placeRaw) {
+      function initMap(placeData) {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 47.5, lng: -122},
           zoom: 9
         });
         
-        placeData = JSON.parse(placeRaw);
         var markers = [];
         var descriptionWindows = [];
         var descriptionContent = [];
