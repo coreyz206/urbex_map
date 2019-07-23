@@ -20,11 +20,10 @@
   * ~Move database to mySQL server~
   * ~Setup https~
   * ~Get a domain name~
-  * Get 301 redirect working for https
+  * Get redirect working for https
   * Create working search bar with mySQL queries/filters/something
-  * Rewrite js with jQuery cause jQuery is fucking lit
-  * Enable OAuth2 for security
-  * Create some barebones user login system that works with OAuth2
+  * Implement more jquery for DOM stuff
+  * Setup API keys
 
 #### Priority 3
   * Restructure git repo for ease of access & updates
