@@ -76,7 +76,7 @@
     searchFilter = function(searchQuery) {
       var filterData = placeData;
       for(location of filterData) {
-        if(!location.includes(searchQuery)) {
+        if(!location[name].includes(searchQuery)) {
           location = null;
         }
       }
