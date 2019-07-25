@@ -1,0 +1,10 @@
+{
+  "name": "urbex_map",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {},
+  "author": "",
+  "devDependencies": {},
+  "workspaces": []
+}
