@@ -69,14 +69,19 @@
         // Roundabout way of isolating string value from the raw form
         var searchQuery = $(this).serializeArray()[0].value;
         console.log(searchQuery);
+        searchFilter(searchQuery);
       });
     });
-    var applyFilter = require('loopback-filters');
-    var filter = {where: {category: searchQuery + ' Places'}};
-
-    var filtered = applyFilter(data, filter);
-
-    console.log(filtered);
+    
+    searchFilter = function(searchQuery) {
+      var filterData = placeData;
+      for(location of filterData) {
+        if(!location.includes(searchQuery)) {
+          location = null;
+        }
+      }
+      initMap(filterData);
+    }
     </script>
 
     <!-- Scripts pertaining to the add location button and associated dropdown menu -->
@@ -186,7 +191,7 @@
         Http.onreadystatechange = function(){
           if(this.readyState==4 && this.status==200){
             console.log("Successfully retrieved locations");
-            placeData = JSON.parse(Http.responseText);
+            let placeData = JSON.parse(Http.responseText);
             initMap(placeData);
           } else if(this.readyState==4 && this.status!=200){
             alert("Failed to retrieve locations");
