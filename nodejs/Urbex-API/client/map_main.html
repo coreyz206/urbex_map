@@ -191,7 +191,7 @@
         Http.onreadystatechange = function(){
           if(this.readyState==4 && this.status==200){
             console.log("Successfully retrieved locations");
-            let placeData = JSON.parse(Http.responseText);
+            window.placeData = JSON.parse(Http.responseText);
             initMap(placeData);
           } else if(this.readyState==4 && this.status!=200){
             alert("Failed to retrieve locations");
