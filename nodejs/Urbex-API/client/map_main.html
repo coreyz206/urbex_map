@@ -76,9 +76,10 @@
     searchFilter = function(searchQuery) {
       var filterData = placeData;
       for(location of filterData) {
-        if(!location[name].includes(searchQuery)) {
+        if(!location["Name"].includes(searchQuery)) {
           location = null;
         }
+        console.log(location["Name"])
       }
       initMap(placeData);
     }
