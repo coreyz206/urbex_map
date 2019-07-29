@@ -1,15 +1,14 @@
 "use strict";
 
-var path = require('path');
-var loopback = require('loopback');
+var path = require("path");
+var loopback = require("loopback");
 var app = loopback();
 
 module.exports = function() {
   var forceSsl = function(req, res, next) {
-    if(req.headers["forwarded-proto"] !== "https") {
+    if (req.headers["forwarded-proto"] !== "https") {
       return res.redirect(["https://", req.get("Host"), req.url].join(""));
-    }
-    else if(req.headers["forwarded-proto"] == "http") {
+    } else if (req.headers["forwarded-proto"] === "http") {
       return res.redirect(["https://", req.get("Host"), req.url].join(""));
     }
     return next();
@@ -17,8 +16,8 @@ module.exports = function() {
 
   app.configure(function() {
     app.use(forceSsl);
-    app.get('/', function(req, res) {
-      res.sendFile(path.join(__dirname + '/../../client/map_main.html'));
+    app.get("/", function(req, res) {
+      res.sendFile(path.join(__dirname + "/../../client/map_main.html"));
     });
   });
 };
