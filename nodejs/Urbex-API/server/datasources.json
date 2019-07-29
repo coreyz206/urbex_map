@@ -12,5 +12,15 @@
     "name": "locationDS",
     "user": "Urbexuser",
     "connector": "mysql"
+  },
+  "lbusers": {
+    "host": "localhost",
+    "port": 3366,
+    "url": "",
+    "database": "users",
+    "password": "Pnwurbex",
+    "name": "lbusers",
+    "user": "Urbexuser",
+    "connector": "mysql"
   }
 }
