@@ -21,3 +21,4 @@ certificate.pem
 certrequest.csr
 privatekey.pem
 ../../apache/index.html
+private
