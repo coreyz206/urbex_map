@@ -216,54 +216,56 @@
         var nameContent = [];
         var iconColor = "";
         for(i in placeData){
-          if(placeData[i]["category"] == "good places"){
-            iconColor = './img/green_marker.png';
-          } else if(placeData[i]["category"] == "questionable places"){
-            iconColor = './img/yellow_marker.png';
-          } else {
-            iconColor = './img/red_marker.png';
-          };
-          
-          markers[i] = new google.maps.Marker({
-            position: {lat: placeData[i]["x"],
-                        lng: placeData[i]["y"]},
-            map: map,
-            title: placeData[i]["name"],
-            icon: iconColor
-          });
+          if(placeData[i] != null) {
+            if(placeData[i]["category"] == "good places"){
+              iconColor = './img/green_marker.png';
+            } else if(placeData[i]["category"] == "questionable places"){
+              iconColor = './img/yellow_marker.png';
+            } else {
+              iconColor = './img/red_marker.png';
+            };
+            
+            markers[i] = new google.maps.Marker({
+              position: {lat: placeData[i]["x"],
+                          lng: placeData[i]["y"]},
+              map: map,
+              title: placeData[i]["name"],
+              icon: iconColor
+            });
 
-          nameContent[i] = '<div id="title"> <b>' + placeData[i]["name"] + '</b> </div>';
-          descriptionContent[i] = '<div id="content">' + placeData[i]["description"] + '</div>';
+            nameContent[i] = '<div id="title"> <b>' + placeData[i]["name"] + '</b> </div>';
+            descriptionContent[i] = '<div id="content">' + placeData[i]["description"] + '</div>';
 
-          descriptionWindows[i] = new google.maps.InfoWindow({
-            content: nameContent[i] + descriptionContent[i],
-            maxWidth: 500
-          });
-          nameWindows[i] = new google.maps.InfoWindow({
-            content: nameContent[i],
-            maxWidth: 300
-          });
+            descriptionWindows[i] = new google.maps.InfoWindow({
+              content: nameContent[i] + descriptionContent[i],
+              maxWidth: 500
+            });
+            nameWindows[i] = new google.maps.InfoWindow({
+              content: nameContent[i],
+              maxWidth: 300
+            });
 
-          function clickListener(i) {
-            return function() {
-              nameWindows[i].close(map, markers[i]);
-              descriptionWindows[i].open(map, markers[i])
-            }
-          };
-          function enterListener(i) {
-            return function() {
-              nameWindows[i].open(map, markers[i])
-            }
-          };
-          function leaveListener(i) {
-            return function() {
-              nameWindows[i].close(map, markers[i])
-            }
-          };
+            function clickListener(i) {
+              return function() {
+                nameWindows[i].close(map, markers[i]);
+                descriptionWindows[i].open(map, markers[i])
+              }
+            };
+            function enterListener(i) {
+              return function() {
+                nameWindows[i].open(map, markers[i])
+              }
+            };
+            function leaveListener(i) {
+              return function() {
+                nameWindows[i].close(map, markers[i])
+              }
+            };
 
-          markers[i].addListener('click', clickListener(i));
-          markers[i].addListener('mouseover', enterListener(i));
-          markers[i].addListener('mouseout', leaveListener(i));
+            markers[i].addListener('click', clickListener(i));
+            markers[i].addListener('mouseover', enterListener(i));
+            markers[i].addListener('mouseout', leaveListener(i));
+          }
         }
       }
 
