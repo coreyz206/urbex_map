@@ -74,7 +74,7 @@
     });
     
     searchFilter = function(searchQuery) {
-      var filterData = placeData;
+      var filterData = Object.create(placeData);
       for(var location in filterData) {
         var placeName = JSON.stringify(filterData[location]["name"]);
         if(!placeName.includes(searchQuery)) {
@@ -82,7 +82,7 @@
         };
         console.log(placeName.includes(searchQuery));
       };
-      initMap(placeData);
+      initMap(filterData);
     }
     </script>
 
