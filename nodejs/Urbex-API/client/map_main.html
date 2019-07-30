@@ -63,7 +63,7 @@
     <script>
     $(document).ready(function () {
       // Listen to submit event on <form> without html
-      $('#search').submit(function(e) {
+      $('#search').change(function(e) {
         // Prevent form submission which refreshes page, the important part
         e.preventDefault();
         // Roundabout way of isolating string value from the raw form
@@ -77,7 +77,7 @@
       var filterData = Object.create(placeData);
       for(var location in filterData) {
         var placeName = JSON.stringify(filterData[location]["name"]);
-        if(!placeName.includes(searchQuery)) {
+        if(!placeName.toUpperCase().includes(searchQuery.toUpperCase())) {
           filterData[location] = null;
         };
         console.log(placeName.includes(searchQuery));
