@@ -14,4 +14,3 @@
     "connector": "mysql",
     "socketPath": "/var/run/mysqld/mysqld.sock"
   }
-}
