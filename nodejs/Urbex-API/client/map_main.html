@@ -203,7 +203,7 @@
       
       // Function to initiate map and add markers. I should split markers into other function
       var map;
-      function initMap(placeData) {
+      function initMap(mapData) {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 47.5, lng: -122},
           zoom: 9
@@ -215,26 +215,26 @@
         var nameWindows = [];
         var nameContent = [];
         var iconColor = "";
-        for(i in placeData){
-          if(placeData[i] != null) {
-            if(placeData[i]["category"] == "good places"){
+        for(i in mapData){
+          if(mapData[i] != null) {
+            if(mapData[i]["category"] == "good places"){
               iconColor = './img/green_marker.png';
-            } else if(placeData[i]["category"] == "questionable places"){
+            } else if(mapData[i]["category"] == "questionable places"){
               iconColor = './img/yellow_marker.png';
             } else {
               iconColor = './img/red_marker.png';
             };
             
             markers[i] = new google.maps.Marker({
-              position: {lat: placeData[i]["x"],
-                          lng: placeData[i]["y"]},
+              position: {lat: mapData[i]["x"],
+                          lng: mapData[i]["y"]},
               map: map,
-              title: placeData[i]["name"],
+              title: mapData[i]["name"],
               icon: iconColor
             });
 
-            nameContent[i] = '<div id="title"> <b>' + placeData[i]["name"] + '</b> </div>';
-            descriptionContent[i] = '<div id="content">' + placeData[i]["description"] + '</div>';
+            nameContent[i] = '<div id="title"> <b>' + mapData[i]["name"] + '</b> </div>';
+            descriptionContent[i] = '<div id="content">' + mapData[i]["description"] + '</div>';
 
             descriptionWindows[i] = new google.maps.InfoWindow({
               content: nameContent[i] + descriptionContent[i],
