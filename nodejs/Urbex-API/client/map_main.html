@@ -63,7 +63,7 @@
     <script>
     $(document).ready(function () {
       // Listen to submit event on <form> without html
-      $('#search').change(function(e) {
+      $('#search').submit(function(e) {
         // Prevent form submission which refreshes page, the important part
         e.preventDefault();
         // Roundabout way of isolating string value from the raw form
