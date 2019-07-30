@@ -73,7 +73,9 @@
       });
     });
     
+    // Takes the subject from the search function, filters the json to locations containing it, and reinitializes map
     searchFilter = function(searchQuery) {
+      // New location data object created every search - important
       var filterData = Object.create(placeData);
       for(var location in filterData) {
         var placeName = JSON.stringify(filterData[location]["name"]);
@@ -82,9 +84,8 @@
         !placeDescription.toUpperCase().includes(searchQuery.toUpperCase())) {
           filterData[location] = null;
         };
-        console.log(placeName.includes(searchQuery));
       };
-      initMap(filterData);
+      initMap(filterData); // TODO: make search more efficient, add tags
     }
     </script>
 
