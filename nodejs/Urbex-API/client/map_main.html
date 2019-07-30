@@ -79,10 +79,10 @@
         //if(!location["Name"].includes(searchQuery)) {
         //  location = null;
         //}
-        console.log("in " + JSON.stringify(filterData[location]));
+        console.log("in " + JSON.stringify(filterData[location]["name"]));
       };
       for(var location of filterData) {
-        console.log("of " + JSON.stringify(location));
+        console.log("of " + JSON.stringify(location["name"]));
       }
       initMap(placeData);
     }
