@@ -20,16 +20,16 @@
   * ~Move database to mySQL server~
   * ~Setup https~
   * ~Get a domain name~
-  * Get redirect working for https
-  * Create working search bar with mySQL queries/filters/something
+  * ~Get redirect working for https~
+  * ~Create working search bar with mySQL queries/filters/something~
   * Implement more jquery for DOM stuff
   * Setup API keys
 
 #### Priority 3
-  * Restructure git repo for ease of access & updates
+  * ~Restructure git repo for ease of access & updates~
   * Configure a PUT in the API for authorized users to edit existing location objects
   * Configure a DELETE in the API for authorized users to delete existing location objects
-  * Spice up this readme
+  * ~Spice up this readme~
   * Publicize discord, maybe make map accessible to non-members (need to discuss)
   * Tiered permissions based on user access level
 
