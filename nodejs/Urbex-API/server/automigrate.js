@@ -1,10 +1,11 @@
 var server = require("./server");
 var ds = server.dataSources.locationDS;
-var lbTables = ["User", "AccessToken", "ACL", "RoleMapping", "Role"];
-ds.automigrate(lbTables, function(er) {
+var lbTable = process.argv[2];
+
+ds.automigrate(lbTable, function(er) {
   if (er) throw er;
   console.log(
-    "Loopback tables [" + lbTables + "] created in ",
+    "Loopback table(s) [" + lbTable + "] created in ",
     ds.adapter.name
   );
   ds.disconnect();
