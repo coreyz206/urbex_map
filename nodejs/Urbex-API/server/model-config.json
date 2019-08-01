@@ -38,5 +38,9 @@
   "locations": {
     "dataSource": "locationDS",
     "public": true
+  },
+  "Member": {
+    "dataSource": "locationDS",
+    "public": false
   }
 }
