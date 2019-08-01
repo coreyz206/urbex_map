@@ -38,13 +38,5 @@
   "locations": {
     "dataSource": "locationDS",
     "public": true
-  },
-  "Member": {
-    "dataSource": "locationDS",
-    "public": true
-  },
-  "Guest": {
-    "dataSource": "locationDS",
-    "public": true
   }
 }
