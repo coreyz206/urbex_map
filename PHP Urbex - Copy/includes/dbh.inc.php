@@ -3,7 +3,7 @@
 $servername = "localhost";
 $dBUsername = "root";
 $dBPassword = "";
-$dBName = "loginsystem"
+$dBName = "urbex"
     
     $conn = mysqli_connect($servername, $dBUsername, dBPassword, dBName,)
     
