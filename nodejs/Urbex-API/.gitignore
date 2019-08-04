@@ -21,3 +21,4 @@ certrequest.csr
 privatekey.pem
 ../../apache/index.html
 private
+node_modules
