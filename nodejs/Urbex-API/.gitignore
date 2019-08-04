@@ -15,10 +15,10 @@
 .project
 .strong-pm
 coverage
-node_modules
 npm-debug.log
 certificate.pem
 certrequest.csr
 privatekey.pem
 ../../apache/index.html
 private
+login-portal/node_modules
