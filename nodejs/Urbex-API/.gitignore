@@ -22,3 +22,4 @@ privatekey.pem
 ../../apache/index.html
 private
 login-portal/node_modules
+node_modules
