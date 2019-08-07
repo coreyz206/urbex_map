@@ -42,6 +42,24 @@
               </form>
         </div>
     </button>
+
+    <!--PLACEHOLDER LOGIN-->
+    <button id="access-panel-button" class="acc-panel-button">
+        Login
+        <div id="access-panel-content" class="acc-panel-content" onclick="cancelEvent(event)">
+            <form id="acc-panel-form">
+                <br>Email:<br>
+                <input type="text" name="userEmail"><br>
+
+                <!--this is awful lmao issa PLACEHOLDER-->
+                <br>Password:<br>
+                <input type="text" name="userPass"><br>
+
+                <input type="button" value="Submit" onclick="loginUser()">
+            </form>
+        </div>
+    </button>
+
     <div id="search-container">
         <form id="search">
             <input name="search-bar" type="text" placeholder="Search locations" class="search-bar-box">
