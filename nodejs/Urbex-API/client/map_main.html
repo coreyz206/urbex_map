@@ -79,10 +79,6 @@
     <!-- Login scripts -->
     <script>
 
-    $('#acc-panel-form').submit(function() {
-      loginUser();
-    });
-
     loginUser = function() {
       var userInfo = {
         "email" : document.getElementById("acc-panel-form").email.value,
@@ -243,107 +239,107 @@
     
     </script>
     <script>
-      // DEPRECATED
-        function readSingleFile(e) {
-        var file = e.target.files[0];
-        if (!file) {
-          return;
-        }
-        var reader = new FileReader();
-        reader.readAsText(file);
-        reader.onload = function(e) {
-          var contents = e.target.result;
-          initMap(contents);
-        }
-      };
+    // DEPRECATED
+    function readSingleFile(e) {
+      var file = e.target.files[0];
+      if (!file) {
+        return;
+      }
+      var reader = new FileReader();
+      reader.readAsText(file);
+      reader.onload = function(e) {
+        var contents = e.target.result;
+        initMap(contents);
+      }
+    };
       
-      // Sends http request to our API to get JSON file, on success it initiates map w data
-      function apiCall(userToken) {
-        console.log("Requesting locations...");
-        var Http = new XMLHttpRequest();
-        var url = 'https://urbexmap.us/api/';
-        Http.open('GET', url + "locations");
-        Http.setRequestHeader('Authorizaton', userToken);
-        Http.send();
+    // Sends http request to our API to get JSON file, on success it initiates map w data
+    function apiCall(userToken) {
+      console.log("Requesting locations...");
+      var Http = new XMLHttpRequest();
+      var url = 'https://urbexmap.us/api/';
+      Http.open('GET', url + "locations");
+      Http.setRequestHeader('Authorizaton', userToken);
+      Http.send();
 
-        Http.onreadystatechange = function(){
-          if(this.readyState === 4 && this.status === 200){
-            console.log("Successfully retrieved locations");
-            window.placeData = JSON.parse(Http.responseText);
-            initMap(placeData);
-          } else if(this.readyState === 4 && this.status !== 200){
-            alert("Failed to retrieve locations, try logging in");
-          }
+      Http.onreadystatechange = function(){
+        if(this.readyState === 4 && this.status === 200){
+          console.log("Successfully retrieved locations");
+          window.placeData = JSON.parse(Http.responseText);
+          initMap(placeData);
+        } else if(this.readyState === 4 && this.status !== 200){
+          alert("Failed to retrieve locations, try logging in");
         }
       }
+    }
+    
+    // Function to initiate map and add markers. I should split markers into other function
+    var map;
+    function initMap(mapData) {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 47.5, lng: -122},
+        zoom: 9
+      });
       
-      // Function to initiate map and add markers. I should split markers into other function
-      var map;
-      function initMap(mapData) {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 47.5, lng: -122},
-          zoom: 9
-        });
-        
-        var markers = [];
-        var descriptionWindows = [];
-        var descriptionContent = [];
-        var nameWindows = [];
-        var nameContent = [];
-        var iconColor = "";
-        for(i in mapData){
-          if(mapData[i] != null) {
-            if(mapData[i]["category"] == "good places"){
-              iconColor = './img/green_marker.png';
-            } else if(mapData[i]["category"] == "questionable places"){
-              iconColor = './img/yellow_marker.png';
-            } else {
-              iconColor = './img/red_marker.png';
-            };
-            
-            markers[i] = new google.maps.Marker({
-              position: {lat: mapData[i]["x"],
-                          lng: mapData[i]["y"]},
-              map: map,
-              title: mapData[i]["name"],
-              icon: iconColor
-            });
+      var markers = [];
+      var descriptionWindows = [];
+      var descriptionContent = [];
+      var nameWindows = [];
+      var nameContent = [];
+      var iconColor = "";
+      for(i in mapData){
+        if(mapData[i] != null) {
+          if(mapData[i]["category"] == "good places"){
+            iconColor = './img/green_marker.png';
+          } else if(mapData[i]["category"] == "questionable places"){
+            iconColor = './img/yellow_marker.png';
+          } else {
+            iconColor = './img/red_marker.png';
+          };
+          
+          markers[i] = new google.maps.Marker({
+            position: {lat: mapData[i]["x"],
+                        lng: mapData[i]["y"]},
+            map: map,
+            title: mapData[i]["name"],
+            icon: iconColor
+          });
 
-            nameContent[i] = '<div id="title"> <b>' + mapData[i]["name"] + '</b> </div>';
-            descriptionContent[i] = '<div id="content">' + mapData[i]["description"] + '</div>';
+          nameContent[i] = '<div id="title"> <b>' + mapData[i]["name"] + '</b> </div>';
+          descriptionContent[i] = '<div id="content">' + mapData[i]["description"] + '</div>';
 
-            descriptionWindows[i] = new google.maps.InfoWindow({
-              content: nameContent[i] + descriptionContent[i],
-              maxWidth: 500
-            });
-            nameWindows[i] = new google.maps.InfoWindow({
-              content: nameContent[i],
-              maxWidth: 300
-            });
+          descriptionWindows[i] = new google.maps.InfoWindow({
+            content: nameContent[i] + descriptionContent[i],
+            maxWidth: 500
+          });
+          nameWindows[i] = new google.maps.InfoWindow({
+            content: nameContent[i],
+            maxWidth: 300
+          });
 
-            function clickListener(i) {
-              return function() {
-                nameWindows[i].close(map, markers[i]);
-                descriptionWindows[i].open(map, markers[i])
-              }
-            };
-            function enterListener(i) {
-              return function() {
-                nameWindows[i].open(map, markers[i])
-              }
-            };
-            function leaveListener(i) {
-              return function() {
-                nameWindows[i].close(map, markers[i])
-              }
-            };
+          function clickListener(i) {
+            return function() {
+              nameWindows[i].close(map, markers[i]);
+              descriptionWindows[i].open(map, markers[i])
+            }
+          };
+          function enterListener(i) {
+            return function() {
+              nameWindows[i].open(map, markers[i])
+            }
+          };
+          function leaveListener(i) {
+            return function() {
+              nameWindows[i].close(map, markers[i])
+            }
+          };
 
-            markers[i].addListener('click', clickListener(i));
-            markers[i].addListener('mouseover', enterListener(i));
-            markers[i].addListener('mouseout', leaveListener(i));
-          }
+          markers[i].addListener('click', clickListener(i));
+          markers[i].addListener('mouseover', enterListener(i));
+          markers[i].addListener('mouseout', leaveListener(i));
         }
       }
+    }
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvx71KQmfMXV17yo-Ewl0-QRX8kvNhNdI&callback=apiCall"
