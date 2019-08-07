@@ -96,7 +96,7 @@
       }
     };
 
-    var spacePressed = false;
+    var spacePressedAccess = false;
 
     // Expands access panel
     document.getElementById("access-panel-button").addEventListener("click", function(e) {
@@ -106,43 +106,18 @@
       this.blur();
       document.getElementById("access-panel-content").classList.toggle("active");
       var content = document.getElementById("access-panel-content");
-      if (content.style.display === "block" && spacePressed == false) {
+      if (content.style.display === "block" && spacePressedAccess == false) {
         content.style.display = "none";
       } else {
         content.style.display = "block";
-        spacePressed = false;
+        spacePressedAccess = false;
       }
     });
 
     // Disable spacebar minimization while in text box
     document.getElementById("access-panel-button").addEventListener("keypress", function(e) {
       if(e.keyCode == 32) {
-        spacePressed = true;
-      }
-    });
-
-    var spacePressed = false;
-
-    // Expands access panel
-    document.getElementById("access-panel-button").addEventListener("click", function(e) {
-      // Make sure this runs after space check
-      setTimeout(50);
-      // Remove focus from expand button
-      this.blur();
-      document.getElementById("access-panel-content").classList.toggle("active");
-      var content = document.getElementById("access-panel-content");
-      if (content.style.display === "block" && spacePressed == false) {
-        content.style.display = "none";
-      } else {
-        content.style.display = "block";
-        spacePressed = false;
-      }
-    });
-
-    // Disable spacebar minimization while in text box
-    document.getElementById("access-panel-button").addEventListener("keypress", function(e) {
-      if(e.keyCode == 32) {
-        spacePressed = true;
+        spacePressedAccess = true;
       }
     });
 
@@ -181,7 +156,7 @@
     <!-- Scripts pertaining to the add location button and associated dropdown menu -->
     <script>  
 
-    var spacePressed = false;
+    var spacePressedLoc = false;
     // Expands location panel
     document.getElementById("location-panel-button").addEventListener("click", function(e) {
       // Make sure this runs after space check
@@ -190,11 +165,11 @@
       this.blur();
       document.getElementById("location-panel-content").classList.toggle("active");
       var content = document.getElementById("location-panel-content");
-      if (content.style.display === "block" && spacePressed == false) {
+      if (content.style.display === "block" && spacePressedLoc == false) {
         content.style.display = "none";
       } else {
         content.style.display = "block";
-        spacePressed = false;
+        spacePressedLoc = false;
       }
     });
 
@@ -214,7 +189,7 @@
     // Disable spacebar minimization while in text box
     document.getElementById("location-panel-button").addEventListener("keypress", function(e) {
       if(e.keyCode == 32) {
-        spacePressed = true;
+        spacePressedLoc = true;
       }
     });
 
