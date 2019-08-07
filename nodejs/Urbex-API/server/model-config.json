@@ -41,6 +41,6 @@
   },
   "Member": {
     "dataSource": "locationDS",
-    "public": false
+    "public": true
   }
 }
