@@ -46,7 +46,7 @@
     <!--PLACEHOLDER LOGIN-->
     <button id="access-panel-button" class="acc-panel-button">
         Login
-        <div id="access-panel-content" class="acc-panel-content" onclick="cancelEvent(event)">
+        <div id="access-panel-content" class="acc-panel-content" onclick="">
             <form id="acc-panel-form">
                 <br>Email:<br>
                 <input type="text" name="userEmail"><br>
@@ -79,7 +79,7 @@
     <!-- Login scripts -->
     <script>
 
-    $('#acc-panel-form').submit(function(e) {
+    loginUser = function() {
       var userInfo = $('#acc-panel-form').value;
       console.log(userInfo);
       
@@ -93,6 +93,31 @@
           console.log("Successfully sent login request");
           console.log(Http.responseText);
         }
+      }
+    };
+
+    var spacePressed = false;
+
+    // Expands access panel
+    document.getElementById("access-panel-button").addEventListener("click", function(e) {
+      // Make sure this runs after space check
+      setTimeout(50);
+      // Remove focus from expand button
+      this.blur();
+      document.getElementById("access-panel-content").classList.toggle("active");
+      var content = document.getElementById("access-panel-content");
+      if (content.style.display === "block" && spacePressed == false) {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+        spacePressed = false;
+      }
+    });
+
+    // Disable spacebar minimization while in text box
+    document.getElementById("access-panel-button").addEventListener("keypress", function(e) {
+      if(e.keyCode == 32) {
+        spacePressed = true;
       }
     });
 
@@ -130,99 +155,99 @@
 
     <!-- Scripts pertaining to the add location button and associated dropdown menu -->
     <script>  
-        var spacePressed = false;
 
-        // Expands location panel
-        document.getElementById("location-panel-button").addEventListener("click", function(e) {
-          // Make sure this runs after space check
-          setTimeout(50);
-          // Remove focus from expand button
-          this.blur();
-          document.getElementById("location-panel-content").classList.toggle("active");
-          var content = document.getElementById("location-panel-content");
-          if (content.style.display === "block" && spacePressed == false) {
-            content.style.display = "none";
-          } else {
-            content.style.display = "block";
-            spacePressed = false;
-          }
-        });
+    var spacePressed = false;
+    // Expands location panel
+    document.getElementById("location-panel-button").addEventListener("click", function(e) {
+      // Make sure this runs after space check
+      setTimeout(50);
+      // Remove focus from expand button
+      this.blur();
+      document.getElementById("location-panel-content").classList.toggle("active");
+      var content = document.getElementById("location-panel-content");
+      if (content.style.display === "block" && spacePressed == false) {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+        spacePressed = false;
+      }
+    });
 
-        // Expands key panel
-        document.getElementById("key-panel-button").addEventListener("click", function(e) {
-          // Remove focus from expand button
-          this.blur();
-          document.getElementById("key-panel-content").classList.toggle("active");
-          var content = document.getElementById("key-panel-content");
-          if (content.style.display === "block") {
-            content.style.display = "none";
-          } else {
-            content.style.display = "block";
-          }
-        });
+    // Expands key panel
+    document.getElementById("key-panel-button").addEventListener("click", function(e) {
+      // Remove focus from expand button
+      this.blur();
+      document.getElementById("key-panel-content").classList.toggle("active");
+      var content = document.getElementById("key-panel-content");
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
 
-        // Disable spacebar minimization while in text box
-        document.getElementById("location-panel-button").addEventListener("keypress", function(e) {
-          if(e.keyCode == 32) {
-            spacePressed = true;
-          }
-        });
+    // Disable spacebar minimization while in text box
+    document.getElementById("location-panel-button").addEventListener("keypress", function(e) {
+      if(e.keyCode == 32) {
+        spacePressed = true;
+      }
+    });
 
-        // Yo I forgot but it's important
-        function cancelEvent(event) {
-          event.stopPropagation();
+    // Yo I forgot but it's important
+    function cancelEvent(event) {
+      event.stopPropagation();
+    }
+
+    // POSTs new locations to the database
+    function sendData() {
+      var locationSubmit = Object();
+      locationSubmit["Name"] = document.getElementById("loc-panel-form").name.value;
+      locationSubmit["Category"] = document.getElementById("loc-panel-form").category.value;
+      locationSubmit["Description"] = document.getElementById("loc-panel-form").description.value;
+      locationSubmit["X Coord"] = document.getElementById("loc-panel-form").x.value;
+      locationSubmit["Y Coord"] = document.getElementById("loc-panel-form").y.value;
+
+      // Coordinates by click functions located in initMap
+
+      console.log("Sending request...");
+      locationSubmit = JSON.stringify(locationSubmit);
+      
+      var Http = new XMLHttpRequest();
+      var url = 'https://urbexmap.us/api/';
+      Http.open('POST', url + "locations");
+      Http.setRequestHeader('Content-Type', 'application/json');
+      Http.send(locationSubmit);
+      Http.onreadystatechange = function(){
+        if(this.readyState==4 && this.status==200){
+          console.log("Successfully added new location")
+          apiCall();
         }
+      }
+    }
 
-        // POSTs new locations to the database
-        function sendData() {
-          var locationSubmit = Object();
-          locationSubmit["Name"] = document.getElementById("loc-panel-form").name.value;
-          locationSubmit["Category"] = document.getElementById("loc-panel-form").category.value;
-          locationSubmit["Description"] = document.getElementById("loc-panel-form").description.value;
-          locationSubmit["X Coord"] = document.getElementById("loc-panel-form").x.value;
-          locationSubmit["Y Coord"] = document.getElementById("loc-panel-form").y.value;
-
-          // Coordinates by click functions located in initMap
-
-          console.log("Sending request...");
-          locationSubmit = JSON.stringify(locationSubmit);
-          
-          var Http = new XMLHttpRequest();
-          var url = 'https://urbexmap.us/api/';
-          Http.open('POST', url + "locations");
-          Http.setRequestHeader('Content-Type', 'application/json');
-          Http.send(locationSubmit);
-          Http.onreadystatechange = function(){
-            if(this.readyState==4 && this.status==200){
-              console.log("Successfully added new location")
-              apiCall();
-            }
-          }
-        }
-
-        // Gets coordinates on click and fills form
-        function getCoords() {
-          google.maps.event.addListener(map, 'click', function(event){
-            document.getElementById("loc-panel-form").x.value = event.latLng.lat();
-            document.getElementById("loc-panel-form").y.value = event.latLng.lng();
-          }) // TODO: remove this listener on form submit ++
-        }
+    // Gets coordinates on click and fills form
+    function getCoords() {
+      google.maps.event.addListener(map, 'click', function(event){
+        document.getElementById("loc-panel-form").x.value = event.latLng.lat();
+        document.getElementById("loc-panel-form").y.value = event.latLng.lng();
+      }) // TODO: remove this listener on form submit ++
+    }
+    
     </script>
     <script>
-      // DEPRECATED, BACKUP IN CASE API FAILS
-
-      // function readSingleFile(e) {
-      //   var file = e.target.files[0];
-      //   if (!file) {
-      //     return;
-      //   }
-      //   var reader = new FileReader();
-      //   reader.readAsText(file);
-      //   reader.onload = function(e) {
-      //     var contents = e.target.result;
-      //     initMap(contents);
-      //   }
-      // };
+      // DEPRECATED
+        function readSingleFile(e) {
+        var file = e.target.files[0];
+        if (!file) {
+          return;
+        }
+        var reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = function(e) {
+          var contents = e.target.result;
+          initMap(contents);
+        }
+      };
       
       // Sends http request to our API to get JSON file, on success it initiates map w data
       function apiCall() {
@@ -311,7 +336,6 @@
         }
       }
 
-      // document.getElementById("file-input").addEventListener("change", readSingleFile)
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvx71KQmfMXV17yo-Ewl0-QRX8kvNhNdI&callback=apiCall"
     async defer></script>
