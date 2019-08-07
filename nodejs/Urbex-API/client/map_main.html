@@ -79,6 +79,10 @@
     <!-- Login scripts -->
     <script>
 
+    $('#acc-panel-form').submit(function() {
+      loginUser();
+    });
+
     loginUser = function() {
       var userInfo = {
         "email" : document.getElementById("acc-panel-form").email.value,
@@ -90,7 +94,7 @@
       var url = 'https://urbexmap.us/api/';
       Http.open('POST', url + "Members/login");
       Http.setRequestHeader('Content-Type', 'application/json');
-      Http.send(userInfo);
+      Http.send(JSON.stringify(userInfo));
       Http.onreadystatechange = function(){
         if(this.readyState==4 && this.status==200){
           console.log("Successfully sent login request");
@@ -98,6 +102,8 @@
           console.log(Http.responseText.id);
           console.log(JSON.parse(Http.responseText));
           console.log(JSON.parse(Http.responseText.id));
+        } else {
+          alert("oops!"):
         }
       }
     };
