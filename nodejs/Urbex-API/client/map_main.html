@@ -51,9 +51,8 @@
                 <br>Email:<br>
                 <input type="text" name="userEmail"><br>
 
-                <!--this is awful lmao issa PLACEHOLDER-->
                 <br>Password:<br>
-                <input type="text" name="userPass"><br>
+                <input type="password" name="userPass"><br>
 
                 <input type="button" value="Submit" onclick="loginUser()">
             </form>
@@ -77,7 +76,29 @@
         </div>
     </button>
 
-    <!-- Script pertaining to the search bar, I had to learn some jQuery here -->
+    <!-- Login scripts -->
+    <script>
+
+    $('#acc-panel-form').submit(function(e) {
+      var userInfo = $('#acc-panel-form').value;
+      console.log(userInfo);
+      
+      var Http = new XMLHttpRequest();
+      var url = 'https://urbexmap.us/api/';
+      Http.open('POST', url + "Members/login");
+      Http.setRequestHeader('Content-Type', 'application/json');
+      Http.send(locationSubmit);
+      Http.onreadystatechange = function(){
+        if(this.readyState==4 && this.status==200){
+          console.log("Successfully sent login request");
+          console.log(Http.responseText);
+        }
+      }
+    });
+
+    </script>
+
+    <!-- Script pertaining to the search bar -->
     <script>
     $(document).ready(function () {
       // Listen to submit event on <form> without html
@@ -85,12 +106,12 @@
         // Prevent form submission which refreshes page, the important part
         e.preventDefault();
         // Roundabout way of isolating string value from the raw form
-        var searchQuery = $(this).serializeArray()[0].value;
+        var searchQuery = $('#search').serializeArray()[0].value;
         console.log(searchQuery);
         searchFilter(searchQuery);
       });
     });
-    
+
     // Takes the subject from the search function, filters the json to locations containing it, and reinitializes map
     searchFilter = function(searchQuery) {
       // New location data object created every search - important
