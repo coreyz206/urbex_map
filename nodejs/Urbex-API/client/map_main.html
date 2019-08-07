@@ -49,10 +49,10 @@
         <div id="access-panel-content" class="acc-panel-content" onclick="cancelEvent(event)">
             <form id="acc-panel-form">
                 <br>Email:<br>
-                <input type="text" name="userEmail"><br>
+                <input type="text" name="email"><br>
 
                 <br>Password:<br>
-                <input type="password" name="userPass"><br>
+                <input type="password" name="pass"><br>
 
                 <input type="button" value="Submit" onclick="loginUser()">
             </form>
@@ -80,18 +80,24 @@
     <script>
 
     loginUser = function() {
-      var userInfo = $('#acc-panel-form').value;
+      var userInfo = {
+        "email" : document.getElementById("acc-panel-form").email.value,
+        "password" : document.getElementById("acc-panel-form").pass.value
+      }
       console.log(userInfo);
       
       var Http = new XMLHttpRequest();
       var url = 'https://urbexmap.us/api/';
       Http.open('POST', url + "Members/login");
       Http.setRequestHeader('Content-Type', 'application/json');
-      Http.send(locationSubmit);
+      Http.send(userInfo);
       Http.onreadystatechange = function(){
         if(this.readyState==4 && this.status==200){
           console.log("Successfully sent login request");
           console.log(Http.responseText);
+          console.log(Http.responseText.id);
+          console.log(JSON.parse(Http.responseText));
+          console.log(JSON.parse(Http.responseText.id));
         }
       }
     };
