@@ -98,13 +98,11 @@
       Http.setRequestHeader('Content-Type', 'application/json');
       Http.send(JSON.stringify(userInfo));
       Http.onreadystatechange = function(){
-        if(this.readyState === 4 && this.status !== 200){
+        if(this.readyState == 4 && this.status != 200){
           console.log("Successfully sent login request");
           apiCall(Http.responseText.id);
-        } else if(this.readyState === 4 && this.status !== 200) {
+        } else if(this.readyState == 4 && this.status != 200) {
           alert("look @ the console");
-        } else {
-          console.log("request put together but readystate not 4");
         }
       }
     };
@@ -231,7 +229,7 @@
       Http.setRequestHeader('Content-Type', 'application/json');
       Http.send(locationSubmit);
       Http.onreadystatechange = function(){
-        if(this.readyState==4 && this.status==200){
+        if(this.readyState == 4 && this.status == 200){
           console.log("Successfully added new location")
           apiCall();
         }
@@ -272,11 +270,11 @@
       Http.send();
 
       Http.onreadystatechange = function(){
-        if(this.readyState === 4 && this.status === 200){
+        if(this.readyState == 4 && this.status == 200){
           console.log("Successfully retrieved locations");
           window.placeData = JSON.parse(Http.responseText);
           initMap(placeData);
-        } else if(this.readyState === 4 && this.status !== 200){
+        } else if(this.readyState == 4 && this.status != 200){
           alert("Failed to retrieve locations, try logging in");
         }
       }
