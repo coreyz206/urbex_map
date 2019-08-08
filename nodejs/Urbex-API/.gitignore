@@ -24,3 +24,5 @@ privatekey.pem
 ../../apache/index.html
 private/
 node_modules/
+package-lock.json
+package.json

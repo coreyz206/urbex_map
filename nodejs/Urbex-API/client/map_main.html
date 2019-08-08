@@ -262,11 +262,11 @@
       
     // Sends http request to our API to get JSON file, on success it initiates map w data
     function apiCall(userToken) {
+      console.log("User authentication token: " + userToken)
       console.log("Requesting locations...");
       var Http = new XMLHttpRequest();
       var url = 'https://urbexmap.us/api/';
-      Http.open('GET', url + "locations");
-      Http.setRequestHeader('Authorizaton', userToken);
+      Http.open('GET', url + "locations?access_token=" + userToken);
       Http.send();
 
       Http.onreadystatechange = function(){
