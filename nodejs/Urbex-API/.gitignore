@@ -25,4 +25,3 @@ privatekey.pem
 private/
 node_modules/
 package-lock.json
-package.json
