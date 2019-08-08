@@ -28,15 +28,19 @@
 #### Priority 3
   * ~Restructure git repo for ease of access & updates~
   * Configure a PUT in the API for authorized users to edit existing location objects
-  * Configure a DELETE in the API for authorized users to delete existing location objects
+  * Configure a DELETE in the API for authorized users to request deletion of existing location objects
   * ~Spice up this readme~
-  * Publicize discord, maybe make map accessible to non-members (need to discuss)
   * Tiered permissions based on user access level
+  * Redesign website to look nice
 
 #### Priority 4 (long term)
+  * Publicize discord, maybe make map accessible to non-members (need to discuss)
+  * Comments and pictures on locations
   * Expand website to include forums, etc.
   * Create IOS/Android client to view map/other
-  * Get money
+  * Get money for server upgrades
+  * Server upgrades
+  * ???
   
 ------
 
