@@ -22,8 +22,8 @@
   * ~Get a domain name~
   * ~Get redirect working for https~
   * ~Create working search bar with mySQL queries/filters/something~
-  * Implement more jquery for DOM stuff
-  * Setup API keys
+  * ~Implement more jquery for DOM stuff~
+  * ~Setup API keys~
 
 #### Priority 3
   * ~Restructure git repo for ease of access & updates~
