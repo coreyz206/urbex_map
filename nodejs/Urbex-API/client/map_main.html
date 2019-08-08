@@ -79,6 +79,13 @@
     <!-- Login scripts -->
     <script>
 
+    $('#acc-panel-form').submit(function(e) {
+      // Prevent form submission which refreshes page, the important part
+      e.preventDefault();
+      console.log("jquery works");
+      loginUser();
+    });
+
     loginUser = function() {
       var userInfo = {
         "email" : document.getElementById("acc-panel-form").email.value,
@@ -96,6 +103,8 @@
           apiCall(Http.responseText.id);
         } else if(this.readyState === 4 && this.status !== 200) {
           alert("look @ the console");
+        } else {
+          console.log("request put together but readystate not 4");
         }
       }
     };
