@@ -285,7 +285,7 @@
     
     function placeMarkers(mapData) {
       // Delete current markers if necessary
-      if(markers != [] && markers != undefined){
+      if(markers != undefined){
         markers.forEach(function(marker) {
           marker.setMap(null);
         });
