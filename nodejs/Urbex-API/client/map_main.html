@@ -292,6 +292,11 @@
       }
       
       var markers = [];
+      var descriptionWindows = [];
+      var descriptionContent = [];
+      var nameWindows = [];
+      var nameContent = [];
+      var iconColor = "";
       for(i in mapData){
         if(mapData[i] != null) {
           if(mapData[i]["category"] == "good places"){
@@ -355,11 +360,6 @@
       });
       
       placeMarkers(mapData);
-      var descriptionWindows = [];
-      var descriptionContent = [];
-      var nameWindows = [];
-      var nameContent = [];
-      var iconColor = "";
     }
 
     </script>
