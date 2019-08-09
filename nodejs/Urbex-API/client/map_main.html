@@ -125,10 +125,13 @@
       }
     });
 
-    // Disable spacebar minimization while in text box
+    // Disable spacebar minimization while in text box and handle enter to submit
     document.getElementById("access-panel-button").addEventListener("keypress", function(e) {
       if(e.keyCode == 32) {
         spacePressedAccess = true;
+      };
+      if(e.keyCode == 13) {
+        loginUser();
       }
     });
 
@@ -160,7 +163,7 @@
           filterData[location] = null;
         };
       };
-      initMap(filterData); // TODO: make search more efficient, add tags
+      placeMarkers(filterData); // TODO: add tags, autocomplete
     }
     </script>
 
@@ -280,20 +283,15 @@
       }
     }
     
-    // Function to initiate map and add markers. I should split markers into other function
-    var map;
-    function initMap(mapData) {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 47.5, lng: -122},
-        zoom: 9
-      });
+    function placeMarkers(mapData) {
+      // Delete current markers if necessary
+      if(markers != []){
+        markers.forEach(function(marker) {
+          marker.setMap(null);
+        });
+      }
       
       var markers = [];
-      var descriptionWindows = [];
-      var descriptionContent = [];
-      var nameWindows = [];
-      var nameContent = [];
-      var iconColor = "";
       for(i in mapData){
         if(mapData[i] != null) {
           if(mapData[i]["category"] == "good places"){
@@ -346,6 +344,22 @@
           markers[i].addListener('mouseout', leaveListener(i));
         }
       }
+    }
+
+    // Function to initiate map and add markers. I should split markers into other function
+    var map;
+    function initMap(mapData) {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 47.5, lng: -122},
+        zoom: 9
+      });
+      
+      placeMarkers(mapData);
+      var descriptionWindows = [];
+      var descriptionContent = [];
+      var nameWindows = [];
+      var nameContent = [];
+      var iconColor = "";
     }
 
     </script>
