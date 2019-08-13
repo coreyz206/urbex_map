@@ -285,13 +285,13 @@
     
     function placeMarkers(mapData) {
       // Delete current markers if necessary
-      if(markers != undefined){
+      if(markers[0] !== undefined){
         markers.forEach(function(marker) {
           marker.setMap(null);
         });
       }
       
-      var markers = [];
+      let markers = [];
       var descriptionWindows = [];
       var descriptionContent = [];
       var nameWindows = [];
