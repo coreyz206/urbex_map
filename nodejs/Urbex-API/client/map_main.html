@@ -160,10 +160,8 @@
         var placeDescription = filterData[location]["description"];
         if(!placeName.toUpperCase().includes(searchQuery.toUpperCase()) &&
         !placeDescription.toUpperCase().includes(searchQuery.toUpperCase())) {
-          filterData[location]["map"] = null;
-        } else{
-          filterData[location]["map"] = map;
-        };
+          filterData[location] = null;
+        }
       };
       initMap(filterData); // TODO: add tags, autocomplete
     }
@@ -310,15 +308,11 @@
           } else {
             iconColor = './img/red_marker.png';
           };
-          
-          if(mapData[i]["map"] === undefined) {
-            mapData[i]["map"] = map;
-          }
 
           markers[i] = new google.maps.Marker({
             position: {lat: mapData[i]["x"],
                         lng: mapData[i]["y"]},
-            map: mapData[i]["map"],
+            map: map,
             title: mapData[i]["name"],
             icon: iconColor
           });
