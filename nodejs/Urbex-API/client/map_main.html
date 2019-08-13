@@ -158,13 +158,13 @@
       for(var location in filterData) {
         var placeName = filterData[location]["name"];
         var placeDescription = filterData[location]["description"];
-        console.log(placeName);
         if(!placeName.toUpperCase().includes(searchQuery.toUpperCase()) &&
         !placeDescription.toUpperCase().includes(searchQuery.toUpperCase())) {
           filterData[location]["map"] = null;
         } else{
           filterData[location]["map"] = map;
         };
+        console.log(filterData[location]["map"])
       };
       placeMarkers(filterData); // TODO: add tags, autocomplete
     }
