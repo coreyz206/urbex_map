@@ -156,11 +156,13 @@
       // New location data object created every search - important
       var filterData = Object.create(placeData);
       for(var location in filterData) {
-        var placeName = JSON.stringify(filterData[location]["name"]);
-        var placeDescription = JSON.stringify(filterData[location]["description"])
+        var placeName = filterData[location]["name"];
+        var placeDescription = filterData[location]["description"];
         if(!placeName.toUpperCase().includes(searchQuery.toUpperCase()) &&
         !placeDescription.toUpperCase().includes(searchQuery.toUpperCase())) {
-          filterData[location] = null;
+          filterData[location]["map"] = null;
+        } else{
+          filterData[location]["map"] = "map";
         };
       };
       placeMarkers(filterData); // TODO: add tags, autocomplete
@@ -284,13 +286,6 @@
     }
     
     function placeMarkers(mapData) {
-      // Delete current markers if necessary
-      if(markers !== undefined){
-        markers.forEach(function(marker) {
-          marker.setMap(null);
-        });
-      }
-      
       var markers = [];
       var descriptionWindows = [];
       var descriptionContent = [];
@@ -307,6 +302,10 @@
             iconColor = './img/red_marker.png';
           };
           
+          if(markers[i]["map"] == undefined) {
+            markers[i]["map"] = "map";
+          }
+
           markers[i] = new google.maps.Marker({
             position: {lat: mapData[i]["x"],
                         lng: mapData[i]["y"]},
