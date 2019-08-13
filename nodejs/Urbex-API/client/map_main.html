@@ -162,7 +162,7 @@
         !placeDescription.toUpperCase().includes(searchQuery.toUpperCase())) {
           filterData[location]["map"] = null;
         } else{
-          filterData[location]["map"] = "map";
+          filterData[location]["map"] = map;
         };
       };
       placeMarkers(filterData); // TODO: add tags, autocomplete
@@ -303,7 +303,7 @@
           };
           
           if(mapData[i]["map"] == undefined) {
-            mapData[i]["map"] = "map";
+            mapData[i]["map"] = map;
           }
 
           markers[i] = new google.maps.Marker({
