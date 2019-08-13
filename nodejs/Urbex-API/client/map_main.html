@@ -164,7 +164,6 @@
         } else{
           filterData[location]["map"] = map;
         };
-        console.log(filterData[location]["map"])
       };
       placeMarkers(filterData); // TODO: add tags, autocomplete
     }
@@ -314,6 +313,9 @@
             title: mapData[i]["name"],
             icon: iconColor
           });
+
+          console.log(markers[i]["name"]);
+          console.log(markers[i]["map"]);
 
           nameContent[i] = '<div id="title"> <b>' + mapData[i]["name"] + '</b> </div>';
           descriptionContent[i] = '<div id="content">' + mapData[i]["description"] + '</div>';
