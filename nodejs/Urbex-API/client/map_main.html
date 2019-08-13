@@ -302,14 +302,14 @@
             iconColor = './img/red_marker.png';
           };
           
-          if(markers[i]["map"] == undefined) {
-            markers[i]["map"] = "map";
+          if(mapData[i]["map"] == undefined) {
+            mapData[i]["map"] = "map";
           }
 
           markers[i] = new google.maps.Marker({
             position: {lat: mapData[i]["x"],
                         lng: mapData[i]["y"]},
-            map: map,
+            map: mapData[i]["map"],
             title: mapData[i]["name"],
             icon: iconColor
           });
