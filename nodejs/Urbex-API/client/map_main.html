@@ -2,7 +2,9 @@
 <html>
   <head>
     <title>Urbex Map</title>
-    <script src="resources/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="icon" href="./img/urbex_favicon.ico">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
@@ -46,7 +48,7 @@
     <!--PLACEHOLDER LOGIN-->
     <button id="access-panel-button" class="acc-panel-button">
         Login
-        <div id="access-panel-content" class="acc-panel-content" onclick="cancelEvent(event)">
+        <div id="access-panel-content" class="modal" onclick="cancelEvent(event)">
             <form id="acc-panel-form">
                 <br>Email:<br>
                 <input type="text" name="email"><br>
@@ -78,6 +80,13 @@
 
     <!-- Login scripts -->
     <script>
+
+    $(document).ready(function () {
+      // Listen to submit event on <form> without html
+      $('#search').submit(function(e) {
+        
+      });
+    });
 
     $('#acc-panel-form').submit(function(e) {
       // Prevent form submission which refreshes page, the important part
@@ -316,9 +325,6 @@
             title: mapData[i]["name"],
             icon: iconColor
           });
-
-          console.log(markers[i]["name"]);
-          console.log(markers[i]["map"]);
 
           nameContent[i] = '<div id="title"> <b>' + mapData[i]["name"] + '</b> </div>';
           descriptionContent[i] = '<div id="content">' + mapData[i]["description"] + '</div>';
