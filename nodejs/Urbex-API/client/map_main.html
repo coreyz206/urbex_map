@@ -112,7 +112,7 @@
       Http.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
           console.log("Successfully sent login request");
-          $('#access-panel-content').modal.close();
+          $.modal.close();
           apiCall(JSON.parse(Http.responseText).id);
         } else if(this.readyState == 4 && this.status != 200) {
           alert("look @ the console");
