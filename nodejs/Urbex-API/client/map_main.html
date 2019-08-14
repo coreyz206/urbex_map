@@ -45,22 +45,18 @@
         </div>
     </button>
 
-    <!--PLACEHOLDER LOGIN-->
-    <button id="access-panel-button" class="acc-panel-button">
-        Login
-        <div id="access-panel-content" class="modal acc-panel-content" onclick="cancelEvent(event)">
-            <header>Login</header>
-            <form id="acc-panel-form">
-                <br>Email:<br>
-                <input type="text" name="email"><br>
+    <div id="access-panel-content" class="modal" style="width: 280px" onclick="cancelEvent(event)">
+        <b>Login</b>
+        <form id="acc-panel-form">
+            <br>Email:<br>
+            <input type="text" name="email"><br>
 
-                <br>Password:<br>
-                <input type="password" name="pass"><br>
+            <br>Password:<br>
+            <input type="password" name="pass"><br>
 
-                <input type="button" value="Submit" onclick="loginUser()">
-            </form>
-        </div>
-    </button>
+            <input type="button" value="Submit" onclick="loginUser()">
+        </form>
+    </div>
 
     <div id="search-container">
         <form id="search">
@@ -116,7 +112,7 @@
           $.modal.close();
           apiCall(JSON.parse(Http.responseText).id);
         } else if(this.readyState == 4 && this.status != 200) {
-          alert("look @ the console");
+          alert("Incorrect email or password");
         }
       }
     };
