@@ -293,17 +293,17 @@
       }
     }
     
-    
-
-    // Function to initiate map and add markers. I should split markers into other function
     var map;
-    function initMap(mapData) {
+    var markers = [];
+    $(document).ready(function(){
       map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 47.5, lng: -122},
         zoom: 9
       });
-      
-      var markers = [];
+    })
+
+    // Function to initiate map and add markers. I should split markers into other function
+    function initMap(mapData) {
       var descriptionWindows = [];
       var descriptionContent = [];
       var nameWindows = [];
