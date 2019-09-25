@@ -140,19 +140,8 @@ body {
 
 /* Actual access panel styling */
 .acc-panel-content {
-  position: absolute;
-  top: 30px;
-  left: 0px;
-  width: 180px;
-  height: 340px;
-  display: none;
-  overflow: hidden;
-  background-color: #ffffff;
-  box-shadow: 1px 1px 1px 1px #c9c9c9;
-  -webkit-box-shadow: 2px 2px 1px 1px #c9c9c9;
-  -moz-box-shadow: 2px 2px 1px 1px #c9c9c9;
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.75em;
+  width: 280px;
+  color: #606060
 }
 
 /* Search Bar */
@@ -172,4 +161,30 @@ body {
   border-radius: 4px;
   font-family: "Open Sans", sans-serif;
   font-size: 1em;
+}
+
+/* Login text */
+.access-text-header {
+  text-align: center;
+  color: #606060;
+  font-size: 2em;
+}
+
+/* Access request link */
+.access-text-request {
+  position: relative;
+  left: 10%;
+  color: #606060;
+  font-size: .8em
+}
+
+/* Access request link behavior */
+.access-text-request:hover {
+  color: #404040;
+}
+
+/* User & password boxes */
+.center-relative {
+  position: relative;
+  left: 17%
 }

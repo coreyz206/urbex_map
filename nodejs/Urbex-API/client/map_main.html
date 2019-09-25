@@ -45,17 +45,35 @@
         </div>
     </button>
 
-    <div id="access-panel-content" class="modal" style="width: 280px" onclick="cancelEvent(event)">
-        <b>Login</b>
-        <form id="acc-panel-form">
+    <div id="access-panel-content" class="modal acc-panel-content" style="width: 260px" onclick="cancelEvent(event)">
+        <div class="access-text-header">  <b>Login</b>  </div>
+        <form id="acc-panel-form" onsubmit="loginUser()" class="center-relative">
             <br>Email:<br>
             <input type="text" name="email"><br>
 
             <br>Password:<br>
-            <input type="password" name="pass"><br>
+            <input type="password" name="pass"><br><br>
 
-            <input type="button" value="Submit" onclick="loginUser()">
+            <input type="button" value="Sign in" onclick="loginUser()" style="position:fixed; left: 48%"><br><br>
+
+            <a id="request-access-link" href="" class="access-text-request">Request access</a>
         </form>
+    </div>
+
+    <div id="access-panel-request" class="modal" onclick="cancelEvent(event)">
+      <div class="access-text-header">  <b>Request Access</b>  </div>
+      <form id="acc-panel-request" onsubmit="requestAccess()">
+          <br>Email:<br>
+          <input type="text" name="email"><br>
+
+          <br>Password:<br>
+          <input type="password" name="pass"><br><br>
+
+          <br>Retype password:<br>
+          <input type="password" name="pass"><br><br>
+
+          <input type="button" value="Request Access" onclick="requestAccess()">
+      </form>
     </div>
 
     <div id="search-container">
@@ -85,12 +103,10 @@
         escapeClose: false,
         showClose: false
       });
-
     });
 
     $('#acc-panel-form').submit(function(e) {
       // Prevent form submission which refreshes page, the important part
-      e.preventDefault();
       console.log("jquery works");
       loginUser();
     });
@@ -116,6 +132,14 @@
         }
       }
     };
+
+    $('request-access-link').click(function() {
+      $('access-panel-request').modal({
+        clickClose: false,
+        showClose: false,
+        escapeClose: false
+      })
+    })
 
     var spacePressedAccess = false;
 
@@ -292,10 +316,6 @@
         }
       }
     }
-    
-    $(document).ready(function(){
-      alert('something isn\'t right')
-    })
 
     // Function to initiate map and add markers. I should split markers into other function
     var map;
