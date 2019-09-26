@@ -6,7 +6,7 @@
 ### To-do list
 
 #### Priority 1  ✓
-  * ~Write barebones API to use GET to transfer JSON data from server to client~
+  * ~Write barebones API to transfer JSON data from server to client~
   * ~Configure server to use API~
   * ~Write html + js to get data from server~
   * ~Configure client to parse json and display with Google Maps API~
